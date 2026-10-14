@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fujifilm X-T20</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fbf4ea;
+      --sage: #bfe3d6;
+      --green: #0e4d4a;
+      --red: #d94a24;
+      --ink: #12201f;
+      --amber: #f4b860;
+      --page: #e6ded0;
+      --row-h: 175px;
+      --gap: 1rem;
+    }
+
+    body {
+      font-family: "DM Sans", system-ui, sans-serif;
+      background-color: var(--page);
+      color: var(--green);
+    }
+
+    .bento-section { padding: 1.25rem 0; }
+
+
+    .card {
+      height: 100%;
+      min-height: var(--row-h);
+      padding: 1.5rem;
+      gap: 0.75rem;
+      justify-content: space-between;
+      border: 0;
+      border-radius: 22px;
+      overflow: hidden;
+      color: var(--green);
+      text-decoration: none;
+      transition: transform 0.25s ease;
+    }
+
+    .card:hover { transform: translateY(-4px); }
+
+    .card-tall { min-height: calc(var(--row-h) * 2 + var(--gap)); }
+
+    .card-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
+
+    .card h1,
+    .card h2 {
+      font-family: "Anton", sans-serif;
+      font-weight: 400;
+      text-transform: uppercase;
+      line-height: 0.98;
+      margin: 0 0 0.45rem;
+      font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+    }
+
+    .card small {
+      display: block;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      opacity: 0.8;
+    }
+
+
+    .bg-cream-card { background-color: var(--cream); }
+    .bg-green-card { background-color: var(--green); color: var(--cream); }
+    .bg-amber-card { background-color: var(--amber); color: var(--ink); }
+    .bg-sage-card  { background-color: var(--sage); }
+    .bg-ink-card   { background-color: var(--ink); color: var(--cream); }
+    .bg-red-card   { background-color: var(--red); color: var(--cream); }
+
+
+    .card-intro h1 {
+      font-size: clamp(2.8rem, 5.6vw, 5rem);
+      line-height: 0.92;
+      margin-bottom: 0.8rem;
+    }
+
+    .card-intro h1 span { color: var(--red); }
+
+    .card-intro p {
+      max-width: min(340px, 58%);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin: 0 0 1rem;
+    }
+
+    .btn-pill {
+      display: inline-block;
+      padding: 0.55rem 1.2rem;
+      border-radius: 999px;
+      background: var(--green);
+      color: var(--cream);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-pill:hover { background: var(--red); color: var(--cream); }
+
+    .card-intro .art {
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38%;
+      max-height: 80%;
+      object-fit: contain;
+    }
+
+    @media (max-width: 767.98px) {
+      .card-intro .art {
+        position: static;
+        transform: none;
+        align-self: center;
+        width: 70%;
+        max-height: 180px;
+      }
+    }
+
+
+    .art-sm {
+      align-self: center;
+      width: 62%;
+      max-height: 200px;
+      object-fit: contain;
+    }
+
+    .donut {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 130px;
+      height: 130px;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: conic-gradient(var(--amber) 0 65%, rgba(251, 244, 234, 0.18) 65% 100%);
+    }
+
+    .donut::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .donut b {
+      position: relative;
+      font-family: "Anton", sans-serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      color: var(--amber);
+    }
+
+    .thumb {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    .thumb.alt { background: var(--red); }
+
+    .thumb-lg { width: 72px; height: 72px; }
+
+    .thumb img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumb-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.4rem;
+    }
+
+    .thumb-row .thumb {
+      width: 100%;
+      max-width: 56px;
+      height: auto;
+      aspect-ratio: 1;
+      justify-self: center;
+    }
+
+    .card-sim > div { max-width: 58%; }
+
+    .art-side {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36%;
+      max-height: 75%;
+      object-fit: contain;
+    }
+
+    .card-motto h2 { font-size: clamp(2.2rem, 4.4vw, 3.8rem); }
+    .card-motto small { font-size: 1rem; }
+
+    .card-wide h2 { color: var(--amber); }
+
+    .decoration {
+      position: absolute;
+      right: 1.2rem;
+      bottom: 0.4rem;
+      font-size: 4rem;
+      color: rgba(244, 184, 96, 0.25);
+    }
+
+    .card-words { container-type: size; }
+
+    .card-words h2 {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin: 0;
+      color: var(--amber);
+      letter-spacing: -0.02em;
+    }
+
+    .w-line { display: block; line-height: 0.85; white-space: nowrap; }
+    .w-1 { font-size: min(36cqw, 27cqh); }
+    .w-2 { font-size: min(42cqw, 27cqh); }
+    .w-3 { font-size: min(41cqw, 27cqh); }
+    .w-4 { font-size: min(39cqw, 27cqh); }
+  </style>
+</head>
+
+<body>
+
+  <div class="bento-section">
+    <div class="container">
+
+      <div class="row g-3">
+
+        <div class="col-lg-9">
+          <div class="d-flex flex-column gap-3 h-100">
+
+            <div class="row g-3">
+              <div class="col-md-8">
+                <div class="card card-tall card-intro bg-cream-card">
+                  <span class="card-label">Meet the camera</span>
+                  <div>
+                    <h1>Fujifilm<br>X-T20<span>.</span></h1>
+                    <p>A compact mirrorless camera with classic dials, great colors, and the kind of charm that makes you want to go out and shoot.</p>
+                  </div>
+                  <img class="art" src="others/fuji.png" alt="Fujifilm X-T20">
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card card-tall bg-green-card">
+                  <span class="card-label">The sensor</span>
+                  <img class="art-sm" src="others/sensor.png" alt="Fujifilm X-T20">
+
+                  <div>
+                    <h2>APS-C Sensor</h2>
+                    <small>A 24.3MP X-Trans CMOS III for sharp detail and those signature Fuji colors.</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-8">
+                <div class="card card-motto bg-amber-card">
+                  <span class="card-label">A reminder</span>
+                  <div>
+                    <h2>Slow down. Shoot.</h2>
+                    <small>Small and light enough to bring everywhere.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card bg-sage-card">
+                  <span class="card-label">The essentials</span>
+                  <div class="thumb-row">
+                    <div class="thumb"><img src="others/top-dials.png" alt="X-T20 top dials"></div>
+                    <div class="thumb alt"><img src="others/viewfinder.png" alt="X-T20 viewfinder"></div>
+                    <div class="thumb alt"><img src="others/lens.png" alt="Lens on the X-T20"></div>
+                    <div class="thumb"><img src="others/sample-shot.png" alt="Sample shot from the X-T20"></div>
+                  </div>
+                  <div>
+                    <h2>Dials, finder &amp; flip screen.</h2>
+                    <small>Shoot the way that feels right to you.</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-3 flex-fill">
+              <div class="col-md-8">
+                <div class="card card-wide bg-green-card">
+                  <span class="card-label">Why the X-T20</span>
+                  <div>
+                    <h2>Colors that feel<br>like a memory.</h2>
+                    <small>A 24.3MP sensor, 4K video, a tilting touchscreen, and classic top dials, all in a compact body.</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card bg-red-card">
+                  <span class="card-label">A note to myself</span>
+                  <div>
+                    <h2>Imperfect on purpose.</h2>
+                    <small>A little blur or a crooked frame is part of the story.</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="d-flex flex-column gap-3 h-100">
+
+            <div class="card card-sim bg-amber-card">
+              <span class="card-label">Straight out of camera</span>
+              <div>
+                <h2>Film<br>Simulation</h2>
+                <small>Provia, Velvia, Classic Chrome, and Acros.</small>
+              </div>
+              <img class="art-side" src="others/film-simulation.png" alt="Film simulation sample">
+            </div>
+
+            <div class="card bg-sage-card">
+              <span class="card-label">Easy framing</span>
+              <div class="thumb thumb-lg"><img src="others/flip-screen.png" alt="X-T20 tilting screen"></div>
+              <div>
+                <h2>Tilting Screen</h2>
+                <small>Shoot low or high and still frame it easily.</small>
+              </div>
+            </div>
+
+            <div class="card card-tall card-words bg-ink-card flex-fill">
+              <h2>
+                <span class="w-line w-1">Travel</span>
+                <span class="w-line w-2">light.</span>
+                <span class="w-line w-3">Shoot</span>
+                <span class="w-line w-4">often.</span>
+              </h2>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
