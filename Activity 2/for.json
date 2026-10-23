@@ -1,0 +1,86 @@
+{
+  "page": {
+    "title": "Our Story",
+    "theme": "cinematic-dark-warm",
+    "colors": {
+      "background": "#14080D",
+      "text": "#FFF4EE",
+      "muted": "#D9B8AE",
+      "accent": "#FDA4AF"
+    },
+    "fonts": {
+      "heading": "Bricolage Grotesque",
+      "body": "Inter",
+      "handwritten": "Caveat"
+    }
+  },
+  "navbar": {
+    "style": "floating-glass-pill",
+    "tabs": ["Home", "Our Story", "Gallery", "Dates", "Memories"],
+    "activeTab": "Our Story",
+    "search": true
+  },
+  "names": "Your Name  &  Her Name",
+  "featured": {
+    "autoRotateSeconds": 7,
+    "crossFade": true,
+    "button": "Watch Our Story"
+  },
+  "rowTitle": "Up Next for Us",
+  "episodes": [
+    {
+      "title": "Our Story",
+      "genre": "Romance",
+      "rating": "Forever",
+      "date": "The Beginning",
+      "description": "Two people brought together by fate, who choose each other every single day. Watch our story unfold.",
+      "image": "photo-1.jpg",
+      "gradient": ["#7F1D1D", "#EA580C"]
+    },
+    {
+      "title": "First Meeting",
+      "genre": "Meet-cute",
+      "rating": "Butterflies",
+      "date": "Add date",
+      "description": "We had no idea everything would begin that day. It was simple, but we never forgot it.",
+      "image": "photo-2.jpg",
+      "gradient": ["#9D174D", "#F97316"]
+    },
+    {
+      "title": "First Date",
+      "genre": "Date night",
+      "rating": "Sweet",
+      "date": "Add date",
+      "description": "I was nervous, and so was she. But that night became our favorite memory.",
+      "image": "photo-3.jpg",
+      "gradient": ["#831843", "#FB7185"]
+    },
+    {
+      "title": "Our Adventures",
+      "genre": "Adventure",
+      "rating": "Joy",
+      "date": "Add date",
+      "description": "Anywhere, as long as we're together. Every place brings a new story and a new laugh.",
+      "image": "photo-4.jpg",
+      "gradient": ["#7C2D12", "#FBBF24"]
+    },
+    {
+      "title": "Simple Days",
+      "genre": "Everyday love",
+      "rating": "Peace",
+      "date": "Add date",
+      "description": "Good food, long talks, and quiet moments. This is where we learned that love lives in the little things.",
+      "image": "photo-5.jpg",
+      "gradient": ["#881337", "#F59E0B"]
+    },
+    {
+      "title": "Until the End",
+      "genre": "Next chapter",
+      "rating": "Forever",
+      "date": "Coming soon",
+      "description": "There are many more chapters to write. And together, we're ready for anything.",
+      "image": "photo-6.jpg",
+      "gradient": ["#701A75", "#FB7185"]
+    }
+  ]
+}
