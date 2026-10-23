@@ -9,13 +9,13 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-  <!-- only what Bootstrap cannot do by itself -->
+  
   <style>
     body { background: #14080D; font-family: 'Inter', sans-serif; overflow-x: hidden; }
     .font-heading { font-family: 'Bricolage Grotesque', sans-serif; }
     .font-hand { font-family: 'Caveat', cursive; }
 
-    /* big background (two layers for the fade) */
+
     .bg { background-size: cover; background-position: 72% 20%; opacity: 0; transition: opacity 1.4s; }
     .bg.on { opacity: 1; }
     .shade {
@@ -25,15 +25,15 @@
     }
     .title { letter-spacing: .18em; }
 
-    /* menu */
+   
     .nav-pills .nav-link { color: #D9B8AE; cursor: pointer; }
     .nav-pills .nav-link.active { background: #F4E6E0; color: #2A0F17; }
 
-    /* dots */
+
     .dot { width: 7px; height: 7px; background: rgba(255,255,255,.35); transition: .5s; cursor: pointer; }
     .dot.on { width: 34px; background: #fff; }
 
-    /* auto-scrolling cards */
+  
     .cards { overflow: hidden; }
     .track { width: max-content; animation: marquee 50s linear infinite; }
     .cards:hover .track { animation-play-state: paused; }
@@ -163,18 +163,18 @@
     document.getElementById("names").innerHTML = page.names;
     document.getElementById("rowTitle").innerHTML = page.rowTitle;
 
-    // menu
+
     for (var i = 0; i < page.tabs.length; i++) {
       var active = (i == page.activeTab) ? " active" : "";
       menu.innerHTML += `<li class="nav-item"><a class="nav-link rounded-pill px-4` + active + `">` + page.tabs[i] + `</a></li>`;
     }
 
-    // dots
+
     for (var i = 0; i < episodes.length; i++) {
       dots.innerHTML += `<i class="dot rounded-pill" onclick="pick(` + i + `)"></i>`;
     }
 
-    // cards (listed twice so the scrolling never has a gap)
+
     for (var round = 0; round < 2; round++) {
       for (var i = 0; i < episodes.length; i++) {
         parent.innerHTML += `
@@ -191,7 +191,7 @@
       }
     }
 
-    // show one episode in the big section
+
     function show(i) {
       if (i == current) return;
       current = i;
@@ -218,7 +218,7 @@
       }
     }
 
-    // change automatically every 7 seconds
+
     function auto() {
       clearInterval(timer);
       timer = setInterval(function () {
@@ -235,7 +235,7 @@
       document.getElementById("row").scrollIntoView({ behavior: "smooth" });
     }
 
-    // menu click
+
     menu.addEventListener("click", function (e) {
       var tabs = menu.querySelectorAll(".nav-link");
       for (var k = 0; k < tabs.length; k++) tabs[k].classList.remove("active");
