@@ -1,300 +1,251 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Our Story</title>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Inter:wght@400;500;600&family=Bricolage+Grotesque:wght@600;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#14080D; --text:#FFF4EE; --muted:#D9B8AE;
-    --heading:'Bricolage Grotesque',sans-serif; --body:'Inter',sans-serif; --hand:'Caveat',cursive;
-    --ease:cubic-bezier(.22,1,.36,1);
-  }
-  *{box-sizing:border-box;margin:0}
-  html,body{background:var(--bg);color:var(--text);font-family:var(--body)}
-  body{min-height:100vh;overflow-x:hidden}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Story</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Inter:wght@400;500;600&family=Bricolage+Grotesque:wght@600;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-  .stage{position:relative;min-height:100vh;display:flex;flex-direction:column;overflow:hidden}
+  <!-- only what Bootstrap cannot do by itself -->
+  <style>
+    body { background: #14080D; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    .font-heading { font-family: 'Bricolage Grotesque', sans-serif; }
+    .font-hand { font-family: 'Caveat', cursive; }
 
-  /* backdrop (two layers for cross-fade) */
-  .bg{position:absolute;inset:0;background-size:cover;background-position:70% center;opacity:0;
-    transition:opacity 1.4s ease,transform 9s ease-out;transform:scale(1.08)}
-  .bg.on{opacity:1;transform:scale(1)}
-  .shade{position:absolute;inset:0;pointer-events:none;
-    background:
-      linear-gradient(90deg,rgba(20,8,13,.92) 0%,rgba(20,8,13,.55) 38%,rgba(20,8,13,0) 65%),
-      linear-gradient(0deg,rgba(20,8,13,1) 0%,rgba(20,8,13,.75) 22%,rgba(20,8,13,0) 55%),
-      linear-gradient(180deg,rgba(20,8,13,.55),transparent 25%)}
-  .glow{position:absolute;width:520px;height:520px;border-radius:50%;filter:blur(100px);opacity:.35;pointer-events:none;
-    background:#FB7185;right:8%;top:5%;animation:drift 14s ease-in-out infinite alternate}
-  @keyframes drift{to{transform:translate(-60px,50px) scale(1.2)}}
+    /* big background (two layers for the fade) */
+    .bg { background-size: cover; background-position: 72% 20%; opacity: 0; transition: opacity 1.4s; }
+    .bg.on { opacity: 1; }
+    .shade {
+      background:
+        linear-gradient(90deg, rgba(20,8,13,.92) 0%, rgba(20,8,13,.55) 38%, rgba(20,8,13,0) 65%),
+        linear-gradient(0deg, rgba(20,8,13,1) 0%, rgba(20,8,13,.75) 22%, rgba(20,8,13,0) 55%);
+    }
+    .title { letter-spacing: .18em; }
 
-  /* nav pill */
-  .pill{position:relative;z-index:5;align-self:center;margin-top:26px;display:flex;gap:4px;padding:6px;border-radius:999px;
-    background:rgba(40,16,22,.55);border:1px solid rgba(255,255,255,.12);
-    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-    opacity:0;animation:rise .9s var(--ease) .1s forwards}
-  .pill button{font:500 15px var(--body);color:var(--muted);background:none;border:0;cursor:pointer;
-    padding:11px 22px;border-radius:999px;transition:.35s var(--ease)}
-  .pill button:hover{color:#fff}
-  .pill button.active{background:#F4E6E0;color:#2A0F17}
-  .pill svg{width:18px;height:18px;vertical-align:-3px}
+    /* menu */
+    .nav-pills .nav-link { color: #D9B8AE; cursor: pointer; }
+    .nav-pills .nav-link.active { background: #F4E6E0; color: #2A0F17; }
 
-  /* featured info */
-  .info{position:relative;z-index:4;padding:0 clamp(24px,5vw,72px);margin-top:auto;padding-bottom:30px;max-width:720px}
-  .info > *{opacity:0;transform:translateY(22px)}
-  .info.go > *{animation:rise .9s var(--ease) forwards}
-  .info.go > *:nth-child(2){animation-delay:.1s}
-  .info.go > *:nth-child(3){animation-delay:.2s}
-  .info.go > *:nth-child(4){animation-delay:.3s}
-  .info.go > *:nth-child(5){animation-delay:.4s}
-  @keyframes rise{to{opacity:1;transform:none}}
-  .names{font-family:var(--hand);font-size:30px;color:#FDA4AF;margin-bottom:4px}
-  h1{font-family:var(--heading);font-weight:800;font-size:clamp(46px,8vw,104px);line-height:1;
-    letter-spacing:.18em;text-transform:uppercase;text-shadow:0 8px 40px rgba(0,0,0,.45)}
-  .meta{display:flex;align-items:center;gap:10px;margin:14px 0 12px;font-size:15px;font-weight:600;color:var(--muted)}
-  .rate{border:1.5px solid var(--muted);border-radius:6px;padding:1px 7px;font-size:12px}
-  .desc{font-size:19px;line-height:1.55;max-width:560px;text-shadow:0 2px 12px rgba(0,0,0,.5)}
-  .go-btn{margin-top:22px;font:600 17px var(--body);color:#fff;border:0;cursor:pointer;
-    padding:14px 34px;border-radius:14px;background:rgba(255,255,255,.2);
-    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:.35s var(--ease)}
-  .go-btn:hover{background:rgba(255,255,255,.34);transform:translateY(-3px)}
+    /* dots */
+    .dot { width: 7px; height: 7px; background: rgba(255,255,255,.35); transition: .5s; cursor: pointer; }
+    .dot.on { width: 34px; background: #fff; }
 
-  .dots{position:relative;z-index:4;display:flex;justify-content:center;gap:8px;margin:6px 0 4px}
-  .dots i{width:7px;height:7px;border-radius:99px;background:rgba(255,255,255,.35);transition:.5s var(--ease);cursor:pointer}
-  .dots i.on{width:34px;background:#fff}
+    /* auto-scrolling cards */
+    .cards { overflow: hidden; }
+    .track { width: max-content; animation: marquee 50s linear infinite; }
+    .cards:hover .track { animation-play-state: paused; }
+    @keyframes marquee { to { transform: translateX(calc(-50% - 12px)); } }
+    .card-item { width: 290px; cursor: pointer; }
+    .thumb { background-size: cover; background-position: center; transition: transform .4s; }
+    .card-item:hover .thumb { transform: translateY(-6px) scale(1.04); }
+    .card-item.active .thumb { box-shadow: 0 0 0 3px #FDA4AF !important; }
 
-  /* up-next row */
-  .row{position:relative;z-index:4;padding:10px 0 40px}
-  .row h2{font-family:var(--heading);font-size:30px;padding:0 clamp(24px,5vw,72px);margin-bottom:16px}
-  /* auto-scrolling row */
-  .cards{overflow:hidden;padding:16px 0 20px;opacity:0;animation:rise 1s var(--ease) .6s forwards;
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
-            mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
-  .track{display:flex;gap:22px;width:max-content;animation:marquee 50s linear infinite}
-  .cards:hover .track{animation-play-state:paused}
-  @keyframes marquee{to{transform:translateX(calc(-50% - 11px))}}
-  .card{flex:0 0 290px;cursor:pointer}
-  /* add-photo button on every card */
-  .up{position:absolute;top:10px;left:10px;z-index:3;width:36px;height:36px;border-radius:50%;border:0;cursor:pointer;
-    display:grid;place-items:center;color:#fff;background:rgba(0,0,0,.45);
-    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-    opacity:0;transform:scale(.8);transition:.35s var(--ease)}
-  .card:hover .up{opacity:1;transform:none}
-  .up:hover{background:#FB7185}
-  .up svg{width:18px;height:18px}
-  @media(hover:none){.up{opacity:1;transform:none}}
-  .alt-btn{margin-top:22px;margin-left:10px;font:600 15px var(--body);color:#fff;cursor:pointer;
-    padding:13px 22px;border-radius:14px;background:transparent;border:1.5px solid rgba(255,255,255,.4);transition:.35s var(--ease)}
-  .alt-btn:hover{background:rgba(255,255,255,.14);transform:translateY(-3px)}
-  .toast{position:fixed;left:50%;bottom:28px;z-index:20;transform:translate(-50%,30px);opacity:0;pointer-events:none;
-    padding:12px 20px;border-radius:99px;font-size:14px;font-weight:500;background:rgba(40,16,22,.9);
-    border:1px solid rgba(255,255,255,.18);transition:.5s var(--ease)}
-  .toast.show{opacity:1;transform:translate(-50%,0)}
-  .thumb{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background-size:cover;background-position:center;
-    box-shadow:0 12px 30px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.12);
-    transition:transform .5s var(--ease),box-shadow .4s}
-  .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.55))}
-  .card:hover .thumb{transform:translateY(-6px) scale(1.04)}
-  .card.active .thumb{box-shadow:0 14px 40px rgba(251,113,133,.45),0 0 0 3px #FDA4AF}
-  .badge{position:absolute;right:10px;bottom:9px;z-index:2;font-size:12px;font-weight:600;
-    padding:3px 9px;border-radius:99px;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-  .card h3{font-size:16px;font-weight:600;margin-top:12px}
-  .card p{font-size:15px;color:#A7857B;margin-top:2px}
-
-  @media(max-width:760px){
-    .pill{max-width:94vw;overflow-x:auto}
-    .pill button{padding:10px 14px;font-size:13px}
-    .desc{font-size:16px}
-    .card{flex-basis:230px}
-    .bg{background-position:60% top}
-  }
-  @media(prefers-reduced-motion:reduce){
-    *,*::before,*::after{animation:none!important;transition:none!important}
-    .pill,.cards,.info>*{opacity:1;transform:none}
-  }
-</style>
+    @media (max-width: 760px) { .card-item { width: 230px; } }
+  </style>
 </head>
+
 <body>
-<div class="stage" id="stage">
-  <div class="bg" id="bgA"></div>
-  <div class="bg" id="bgB"></div>
-  <div class="shade"></div>
-  <div class="glow"></div>
 
-  <nav class="pill" id="pill"></nav>
+  <div class="min-vh-100 d-flex flex-column position-relative overflow-hidden">
+    <div class="bg position-absolute top-0 start-0 w-100 h-100" id="bgA"></div>
+    <div class="bg position-absolute top-0 start-0 w-100 h-100" id="bgB"></div>
+    <div class="shade position-absolute top-0 start-0 w-100 h-100"></div>
 
-  <section class="info go" id="info"></section>
-  <div class="dots" id="dots"></div>
+    <ul class="nav nav-pills rounded-pill p-2 gap-1 mx-auto mt-4 border bg-dark bg-opacity-50 position-relative z-3" id="menu"></ul>
 
-  <section class="row" id="row">
-    <h2 id="rowTitle"></h2>
-    <div class="cards"><div class="track" id="cards"></div></div>
-  </section>
-</div>
-<input type="file" id="file" accept="image/*" multiple hidden>
-<div class="toast" id="toast"></div>
-
-<script>
-/* ================= EDIT HERE =================
-   Change the names, stories and pictures.
-   Put your photos in the same folder as this file:
-   photo-1.jpg, photo-2.jpg ... (until then, a gradient is shown)
-================================================ */
-const data = {
-  tabs: ["Home", "Our Story", "Gallery", "Dates", "Memories"],
-  names: "Your Name  &  Her Name",
-  rowTitle: "Up Next for Us",
-  episodes: [
-    { title:"Our Story", genre:"Romance", rating:"Forever", date:"The Beginning",
-      desc:"Two people brought together by fate, who choose each other every single day. Watch our story unfold.",
-      image:"photo-1.jpg", colors:["#7F1D1D","#EA580C"] },
-    { title:"First Meeting", genre:"Meet-cute", rating:"Butterflies", date:"Add date",
-      desc:"We had no idea everything would begin that day. It was simple, but we never forgot it.",
-      image:"photo-2.jpg", colors:["#9D174D","#F97316"] },
-    { title:"First Date", genre:"Date night", rating:"Sweet", date:"Add date",
-      desc:"I was nervous, and so was she. But that night became our favorite memory.",
-      image:"photo-3.jpg", colors:["#831843","#FB7185"] },
-    { title:"Our Adventures", genre:"Adventure", rating:"Joy", date:"Add date",
-      desc:"Anywhere, as long as we're together. Every place brings a new story and a new laugh.",
-      image:"photo-4.jpg", colors:["#7C2D12","#FBBF24"] },
-    { title:"Simple Days", genre:"Everyday love", rating:"Peace", date:"Add date",
-      desc:"Good food, long talks, and quiet moments. This is where we learned that love lives in the little things.",
-      image:"photo-5.jpg", colors:["#881337","#F59E0B"] },
-    { title:"Until the End", genre:"Next chapter", rating:"Forever", date:"Coming soon",
-      desc:"There are many more chapters to write. And together, we're ready for anything.",
-      image:"photo-6.jpg", colors:["#701A75","#FB7185"] }
-  ]
-};
-
-const $ = id => document.getElementById(id);
-const searchSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>';
-const bg = e => `url('${e.image}'), linear-gradient(120deg,${e.colors[0]},${e.colors[1]})`;
-const heroBg = e => `linear-gradient(120deg,${e.colors[0]} 0%,${e.colors[1]} 100%)`;
-
-// nav tabs
-$('pill').innerHTML = data.tabs.map((t,i)=>`<button class="${i===1?'active':''}">${t}</button>`).join('') + `<button aria-label="Search">${searchSvg}</button>`;
-$('pill').addEventListener('click', e => {
-  const b = e.target.closest('button'); if(!b) return;
-  [...$('pill').children].forEach(x=>x.classList.remove('active')); b.classList.add('active');
-});
-
-// cards + dots
-$('rowTitle').textContent = data.rowTitle;
-const camSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>';
-const thumbBg = e => `url('${e.image}'),linear-gradient(135deg,${e.colors[0]},${e.colors[1]})`;
-// the list is shown twice so the auto-scroll loops without a gap
-$('cards').innerHTML = [...data.episodes, ...data.episodes].map((e,k)=>{
-  const i = k % data.episodes.length;
-  return `
-  <div class="card" data-i="${i}">
-    <div class="thumb" style="background-image:${thumbBg(e)}">
-      <button class="up" data-up="${i}" aria-label="Add photo" title="Add photo">${camSvg}</button>
-      <span class="badge">${e.genre}</span>
+    <div class="container-fluid px-4 px-md-5 mt-auto pb-4 position-relative z-2" id="info">
+      <div class="font-hand fs-2 text-danger-emphasis" id="names"></div>
+      <h1 class="title font-heading display-1 fw-bold text-uppercase" id="title"></h1>
+      <div class="my-3 text-white-50 fw-semibold">
+        <span id="genre"></span>
+        <span class="badge border border-secondary ms-2" id="rating"></span>
+      </div>
+      <p class="lead col-md-7 col-lg-5" id="description"></p>
+      <button class="btn btn-outline-light btn-lg rounded-4 px-4" onclick="goDown()">Watch Our Story</button>
     </div>
-    <h3>${e.title}</h3><p>${e.date}</p>
-  </div>`;
-}).join('');
-$('dots').innerHTML = data.episodes.map((_,i)=>`<i data-i="${i}"></i>`).join('');
 
-// featured
-let cur = -1, layer = 0, timer;
-function show(i){
-  if(i === cur) return;
-  cur = i;
-  const e = data.episodes[i];
+    <div class="d-flex justify-content-center gap-2 mb-2 position-relative z-2" id="dots"></div>
 
-  // cross-fade backdrop
-  const next = layer ? $('bgA') : $('bgB'), prev = layer ? $('bgB') : $('bgA');
-  next.style.backgroundImage = bg(e);
-  next.classList.add('on'); prev.classList.remove('on'); layer = 1 - layer;
+    <div class="py-4 position-relative z-2" id="row">
+      <h2 class="font-heading px-4 px-md-5" id="rowTitle"></h2>
+      <div class="cards py-3">
+        <div class="track d-flex gap-4" id="parent">
 
-  // text (restart animation)
-  const info = $('info');
-  info.classList.remove('go');
-  info.innerHTML = `
-    <div class="names">${data.names}</div>
-    <h1>${e.title}</h1>
-    <div class="meta"><span>${e.genre}</span><span class="rate">${e.rating}</span></div>
-    <p class="desc">${e.desc}</p>
-    <button class="go-btn" id="goBtn">Watch Our Story</button><button class="alt-btn" id="photoBtn">+ Add photo</button>`;
-  void info.offsetWidth; info.classList.add('go');
-  $('goBtn').onclick = () => $('row').scrollIntoView({behavior:'smooth'});
-  $('photoBtn').onclick = () => chooseFor(cur);
 
-  document.querySelectorAll('.card').forEach(c=>c.classList.toggle('active', +c.dataset.i===i));
-  document.querySelectorAll('.dots i').forEach((d,k)=>d.classList.toggle('on',k===i));
-}
-function auto(){ clearInterval(timer); timer = setInterval(()=>show((cur+1)%data.episodes.length), 7000); }
-function pick(i){ show(i); auto(); }
 
-$('cards').addEventListener('click', e => {
-  const up = e.target.closest('.up');
-  if(up){ e.stopPropagation(); chooseFor(+up.dataset.up); return; }
-  const c = e.target.closest('.card');
-  if(c){ pick(+c.dataset.i); window.scrollTo({top:0,behavior:'smooth'}); }
-});
-$('dots').addEventListener('click',  e => { const d=e.target.closest('i');    if(d) pick(+d.dataset.i); });
+        </div>
+      </div>
+    </div>
+  </div>
 
-/* ---------- add your own photos (saved in this browser) ---------- */
-let toastTimer;
-function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),2600); }
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
 
-const STORE = 'photos';
-const idb = new Promise(res => {
-  try{
-    const r = indexedDB.open('our-story', 1);
-    r.onupgradeneeded = () => r.result.createObjectStore(STORE);
-    r.onsuccess = () => res(r.result);
-    r.onerror = () => res(null);
-  }catch(_){ res(null); }
-});
-const dbGet = async k => { const db = await idb; if(!db) return; return new Promise(r => { const q = db.transaction(STORE).objectStore(STORE).get(k); q.onsuccess = () => r(q.result); q.onerror = () => r(); }); };
-const dbSet = async (k,v) => { const db = await idb; if(db) db.transaction(STORE,'readwrite').objectStore(STORE).put(v,k); };
+  <script>
+    var page = {
+      title: "Our Story",
+      names: "Chei & Alyannah",
+      rowTitle: "Up Next for Us",
+      tabs: ["Home", "Our Story", "Gallery", "Dates", "Memories"],
+      activeTab: 1
+    }
 
-// shrink big phone photos so they save quickly
-function shrink(file){
-  return new Promise(res => {
-    const img = new Image(), url = URL.createObjectURL(file);
-    img.onload = () => {
-      const s = Math.min(1, 1800 / Math.max(img.width, img.height));
-      const c = document.createElement('canvas'); c.width = img.width*s; c.height = img.height*s;
-      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
-      URL.revokeObjectURL(url); res(c.toDataURL('image/jpeg', .86));
-    };
-    img.onerror = () => res(null);
-    img.src = url;
-  });
-}
+    var episodes = [
+      {
+        title: "Mall of Asia - Seaside",
+        genre: "Sunset Romance",
+        rating: "Soulmates",
+        date: "July 03, 2026",
+        description: "By the seaside, with the city lights around us, I realized that no matter where life takes us, you're the person I want beside me, today and always.",
+        image: "others/photo-1.jpg",
+        hero: "others/hero-1.jpg",
+        gradient: ["#7F1D1D", "#EA580C"]
+      }, {
+        title: "Pride Month ",
+        genre: "Colorful Memories",
+        rating: "Magic",
+        date: "June 27, 2026",
+        description: "Some moments seem ordinary until they become unforgettable. That day, surrounded by colors and happiness, we made another beautiful memory together.",
+        image: "others/photo-2.jpg",
+        hero: "others/hero-2.jpg",
+        gradient: ["#9D174D", "#F97316"]
+      }, {
+        title: "Quiapo Church",
+        genre: "A Prayer for Us",
+        rating: "Devotion",
+        date: "February 01, 2026",
+        description: "In a place filled with prayers and hope, I found myself wishing for more days with you, more memories to share, and a love that keeps growing stronger.",
+        image: "others/photo-3.jpg",
+        hero: "others/hero-3.jpg",
+        gradient: ["#831843", "#FB7185"]
+      }, {
+        title: "ZUS Coffee",
+        genre: "Coffee & Company",
+        rating: "Comfort",
+        date: "July 02, 2026",
+        description: "A cup of coffee, endless conversations, and your smile across the table. It's funny how the simplest moments become special when I'm spending them with you.",
+        image: "others/photo-4.jpg",
+        hero: "others/hero-4.jpg",
+        gradient: ["#7C2D12", "#FBBF24"]
+      }, {
+        title: "KKK Monument",
+        genre: "Little Things",
+        rating: "Contentment",
+        date: "May 04, 2026",
+        description: "We didn't need anything extraordinary to make the day beautiful. Being together, sharing stories, and enjoying the little things reminded me that love is found in moments like these.",
+        image: "others/photo-5.jpg",
+        hero: "others/hero-5.jpg",
+        gradient: ["#881337", "#F59E0B"]
+      }, {
+        title: "Trees Residence, Quezon City",
+        genre: "Our Future",
+        rating: "Forever",
+        date: "March 15, 2026",
+        description: "This is only one chapter of our story, with countless more waiting to be written. Whatever the future holds, I hope we keep choosing each other, growing together, and turning every tomorrow into another beautiful memory.",
+        image: "others/photo-6.jpg",
+        hero: "others/hero-6.jpg",
+        gradient: ["#701A75", "#FB7185"]
+      }
+    ]
 
-function setImage(i, src){
-  const e = data.episodes[i]; e.image = src;
-  document.querySelectorAll(`.card[data-i="${i}"] .thumb`).forEach(t => t.style.backgroundImage = thumbBg(e));
-  if(i === cur){
-    const on = $('bgA').classList.contains('on') ? $('bgA') : $('bgB');
-    on.style.backgroundImage = bg(e);
-  }
-}
+    var parent = document.getElementById("parent");
+    var menu = document.getElementById("menu");
+    var dots = document.getElementById("dots");
+    var current = -1;
+    var layer = 0;
+    var timer;
 
-let target = 0;
-const fileInput = $('file');
-function chooseFor(i){ target = i; fileInput.value = ''; fileInput.click(); }
-fileInput.addEventListener('change', async () => {
-  const files = [...fileInput.files].filter(f => f.type.startsWith('image/'));
-  let n = 0;
-  // several photos at once fill the next cards in order
-  for(let k = 0; k < files.length && target + k < data.episodes.length; k++){
-    const src = await shrink(files[k]); if(!src) continue;
-    setImage(target + k, src); await dbSet(target + k, src); n++;
-  }
-  if(n) toast(n === 1 ? 'Photo added' : n + ' photos added');
-});
+    document.title = page.title;
+    document.getElementById("names").innerHTML = page.names;
+    document.getElementById("rowTitle").innerHTML = page.rowTitle;
 
-// bring back photos saved earlier
-(async () => { for(let i = 0; i < data.episodes.length; i++){ const s = await dbGet(i); if(s) setImage(i, s); } })();
+    // menu
+    for (var i = 0; i < page.tabs.length; i++) {
+      var active = (i == page.activeTab) ? " active" : "";
+      menu.innerHTML += `<li class="nav-item"><a class="nav-link rounded-pill px-4` + active + `">` + page.tabs[i] + `</a></li>`;
+    }
 
-show(0); auto();
-</script>
+    // dots
+    for (var i = 0; i < episodes.length; i++) {
+      dots.innerHTML += `<i class="dot rounded-pill" onclick="pick(` + i + `)"></i>`;
+    }
+
+    // cards (listed twice so the scrolling never has a gap)
+    for (var round = 0; round < 2; round++) {
+      for (var i = 0; i < episodes.length; i++) {
+        parent.innerHTML += `
+          <div class="card-item card bg-transparent border-0" onclick="pick(` + i + `); window.scrollTo({ top: 0, behavior: 'smooth' });">
+            <div class="thumb ratio ratio-16x9 rounded-4 shadow position-relative" style="background-image: url('` + episodes[i].image + `'), linear-gradient(135deg, ` + episodes[i].gradient[0] + `, ` + episodes[i].gradient[1] + `);">
+              <span class="badge text-bg-dark bg-opacity-50 position-absolute top-auto bottom-0 end-0 m-2 w-auto h-auto" style="inset: auto 0 0 auto;">` + episodes[i].genre + `</span>
+            </div>
+            <div class="card-body px-0 py-2">
+              <div class="fw-semibold">` + episodes[i].title + `</div>
+              <div class="text-secondary">` + episodes[i].date + `</div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // show one episode in the big section
+    function show(i) {
+      if (i == current) return;
+      current = i;
+
+      var next = layer ? document.getElementById("bgA") : document.getElementById("bgB");
+      var prev = layer ? document.getElementById("bgB") : document.getElementById("bgA");
+      next.style.backgroundImage = "url('" + episodes[i].hero + "'), linear-gradient(120deg, " + episodes[i].gradient[0] + ", " + episodes[i].gradient[1] + ")";
+      next.classList.add("on");
+      prev.classList.remove("on");
+      layer = 1 - layer;
+
+      document.getElementById("title").innerHTML = episodes[i].title;
+      document.getElementById("genre").innerHTML = episodes[i].genre;
+      document.getElementById("rating").innerHTML = episodes[i].rating;
+      document.getElementById("description").innerHTML = episodes[i].description;
+
+      var cards = document.querySelectorAll(".card-item");
+      for (var k = 0; k < cards.length; k++) {
+        cards[k].classList.toggle("active", k % episodes.length == i);
+      }
+      var dot = dots.querySelectorAll("i");
+      for (var k = 0; k < dot.length; k++) {
+        dot[k].classList.toggle("on", k == i);
+      }
+    }
+
+    // change automatically every 7 seconds
+    function auto() {
+      clearInterval(timer);
+      timer = setInterval(function () {
+        show((current + 1) % episodes.length);
+      }, 7000);
+    }
+
+    function pick(i) {
+      show(i);
+      auto();
+    }
+
+    function goDown() {
+      document.getElementById("row").scrollIntoView({ behavior: "smooth" });
+    }
+
+    // menu click
+    menu.addEventListener("click", function (e) {
+      var tabs = menu.querySelectorAll(".nav-link");
+      for (var k = 0; k < tabs.length; k++) tabs[k].classList.remove("active");
+      e.target.classList.add("active");
+    });
+
+    show(0);
+    auto();
+  </script>
+
 </body>
+
 </html>
