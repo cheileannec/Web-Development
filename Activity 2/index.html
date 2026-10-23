@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BrandLyft</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Inter:wght@400;500;600&family=Bricolage+Grotesque:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --text:#1E1B4B; --muted:#4C4A7A; --badge:#EDE0FF; --signup:#1E1B4B;
+    --cta:linear-gradient(135deg,#7C3AED,#EC4899);
+    --heading:'Bricolage Grotesque','Cabinet Grotesk',sans-serif;
+    --body:'Inter',sans-serif; --hand:'Caveat',cursive;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{
+    min-height:100vh; padding:32px; font-family:var(--body); color:var(--text);
+    background:linear-gradient(160deg,#312E81 0%,#7C3AED 45%,#F472B6 100%);
+  }
+  .frame{
+    max-width:1100px; margin:0 auto; background:#FBF8FF; border-radius:24px;
+    border:6px solid rgba(255,255,255,.35); box-shadow:0 30px 80px rgba(30,27,75,.35); padding:24px 28px 56px; overflow:hidden;
+    position:relative;
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:500}
+  .logo{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px}
+  .logo svg{width:20px;height:20px}
+  .links{display:flex;gap:28px}
+  .links a{color:var(--text);text-decoration:none}
+  .actions{display:flex;gap:10px}
+  .btn{padding:7px 16px;border-radius:999px;font-size:12px;font-weight:500;text-decoration:none}
+  .btn.light{background:#fff;color:var(--text)}
+  .btn.dark{background:var(--signup);color:#fff}
+  .hero{text-align:center;margin-top:48px;position:relative}
+  .badge{display:inline-block;background:var(--badge);color:#5B21B6;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600}
+  h1 span{background:linear-gradient(90deg,#7C3AED,#EC4899);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .note{color:#7C3AED}
+  h1{font-family:var(--heading);font-weight:600;font-size:clamp(36px,6vw,64px);line-height:1.1;margin:28px 0 24px;letter-spacing:-.02em}
+  .sub{max-width:400px;margin:0 auto;font-size:15px;line-height:1.6;color:var(--muted)}
+  .note{position:absolute;font-family:var(--hand);font-size:22px;line-height:1}
+  .note.elevate{right:6%;top:90px;transform:rotate(25deg);text-align:right}
+  .note.free{left:30%;bottom:-70px;transform:rotate(20deg)}
+  .carousel{
+    display:flex;gap:16px;justify-content:center;align-items:center;
+    margin:40px -60px 0;perspective:900px;
+  }
+  .card{
+    flex:0 0 140px;height:190px;border-radius:24px;background-size:cover;background-position:center;
+    background-color:#ddd;box-shadow:0 4px 14px rgba(0,0,0,.08);transition:transform .3s;
+  }
+  .card.left{transform:rotateY(18deg) scale(.95)}
+  .card.right{transform:rotateY(-18deg) scale(.95)}
+  .card:hover{transform:scale(1.06)}
+  .cta-wrap{text-align:center;margin-top:48px}
+  .cta{
+    display:inline-block;background:var(--cta);color:#fff;text-decoration:none;
+    padding:14px 36px;border-radius:999px;font-size:13px;font-weight:600;
+    box-shadow:0 8px 20px rgba(124,58,237,.35);
+    outline:2px dashed rgba(124,58,237,.45);outline-offset:4px;
+  }
+  @media(max-width:800px){
+    .links,.note{display:none}
+    .carousel{overflow-x:auto;justify-content:flex-start;margin:32px -28px 0;padding:0 28px}
+  }
+</style>
+</head>
+<body>
+<div class="frame" id="app"></div>
+
+<script>
+// Same data as brandlyft-landing.json (embedded so the file works when opened directly)
+const data = {
+  navbar:{
+    logo:{text:"BrandLyft"},
+    links:[{label:"Brands",href:"#brands"},{label:"Creators",href:"#creators"},{label:"Pricing",href:"#pricing"},{label:"Use Cases",href:"#use-cases"},{label:"Contact",href:"#contact"}],
+    actions:[{label:"Log in",href:"/login",variant:"light"},{label:"Sign up",href:"/signup",variant:"dark"}]
+  },
+  hero:{
+    badge:"Join over 100,000 happy creators",
+    headline:["Engage Audiences","with Stunning Videos"],
+    sub:"Boost Your Brand with High-Impact Short Videos from our expert content creators. Our team is ready to propel your business forward",
+    notes:[{text:"Elevate your brand",cls:"elevate"},{text:"It's free",cls:"free"}]
+  },
+  carousel:[
+    {alt:"Hands mixing a bowl with oranges",image:"video-1.jpg",tilt:"left",fallback:"#C4B5FD"},
+    {alt:"People dancing in a patterned room",image:"video-2.jpg",tilt:"left",fallback:"#A78BFA"},
+    {alt:"Person sitting on a rocky coast",image:"video-3.jpg",tilt:"",fallback:"#818CF8"},
+    {alt:"Facial mask skincare treatment",image:"video-4.jpg",tilt:"",fallback:"#F9A8D4"},
+    {alt:"Sliced grapefruit and lemons",image:"video-5.jpg",tilt:"",fallback:"#F472B6"},
+    {alt:"Woman cooking with fresh herbs",image:"video-6.jpg",tilt:"right",fallback:"#8B5CF6"},
+    {alt:"Motorcyclist on a bridge",image:"video-7.jpg",tilt:"right",fallback:"#6366F1"}
+  ],
+  cta:{label:"Get Started",href:"/signup"}
+};
+
+const logoSvg = '<svg viewBox="0 0 24 24" fill="#7C3AED"><path d="M2 14c0-4 3-8 8-8 3 0 4 2 7 2 3 0 5 2 5 5s-3 6-8 6H8c-3 0-6-2-6-5z"/></svg>';
+
+document.getElementById('app').innerHTML = `
+  <nav>
+    <div class="logo">${logoSvg}${data.navbar.logo.text}</div>
+    <div class="links">${data.navbar.links.map(l=>`<a href="${l.href}">${l.label}</a>`).join('')}</div>
+    <div class="actions">${data.navbar.actions.map(a=>`<a class="btn ${a.variant}" href="${a.href}">${a.label}</a>`).join('')}</div>
+  </nav>
+
+  <section class="hero">
+    <span class="badge">${data.hero.badge}</span>
+    <h1>${data.hero.headline[0]}<br><span>${data.hero.headline[1]}</span></h1>
+    <p class="sub">${data.hero.sub}</p>
+    ${data.hero.notes.map(n=>`<span class="note ${n.cls}">${n.text.replace(' ','<br>')}</span>`).join('')}
+  </section>
+
+  <div class="carousel">
+    ${data.carousel.map(c=>`
+      <div class="card ${c.tilt}" role="img" aria-label="${c.alt}"
+           style="background-color:${c.fallback};background-image:url('${c.image}')"></div>`).join('')}
+  </div>
+
+  <div class="cta-wrap"><a class="cta" href="${data.cta.href}">${data.cta.label}</a></div>
+`;
+</script>
+</body>
+</html>
