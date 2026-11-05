@@ -1,0 +1,15 @@
+{
+    "name": "clash-troops",
+    "version": "2.0.0",
+    "description": "Clash Troops school project",
+    "type": "module",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "clash-of-clans-data": "^1.0.0",
+        "dotenv": "^17.2.3",
+        "express": "^5.1.0"
+    }
+}

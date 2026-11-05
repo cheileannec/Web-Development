@@ -1,0 +1,632 @@
+/* ==========================================
+   GENERAL
+========================================== */
+
+body {
+    background:
+        linear-gradient(
+            135deg,
+            #100e0c,
+            #17120f,
+            #151019
+        );
+
+    color: #f5f5f5;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.clash-navbar {
+    background: #11100e;
+
+    border-bottom:
+        3px solid #d8bb2e;
+}
+
+.clash-logo {
+    background:
+        linear-gradient(
+            135deg,
+            #e9c52d,
+            #61a82d
+        );
+
+    color: #111 !important;
+
+    font-weight: 900;
+
+    padding:
+        10px 16px;
+
+    border-radius: 8px;
+}
+
+.clash-navbar .nav-link {
+    color: #ddd !important;
+
+    font-weight: 700;
+
+    margin-left: 10px;
+}
+
+.clash-navbar .nav-link:hover {
+    color: #d8bb2e !important;
+}
+
+
+/* ==========================================
+   HERO
+========================================== */
+
+.hero-section {
+    min-height: 470px;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 80% 40%,
+            rgba(89, 150, 42, 0.18),
+            transparent 35%
+        );
+}
+
+.eyebrow {
+    color: #7e8b96;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    font-weight: 800;
+
+    margin-bottom: 12px;
+}
+
+.hero-title {
+    font-size:
+        clamp(55px, 9vw, 100px);
+
+    line-height: 0.9;
+
+    font-weight: 1000;
+
+    letter-spacing: -3px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0cb2e,
+            #63aa2d
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-text {
+    max-width: 700px;
+
+    color: #999;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    margin:
+        25px 0;
+}
+
+.clash-button {
+    background:
+        linear-gradient(
+            135deg,
+            #e5c22d,
+            #60a92e
+        );
+
+    border: none;
+
+    color: #111;
+
+    font-weight: 900;
+
+    padding:
+        13px 22px;
+}
+
+.clash-button:hover {
+    color: #111;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* ==========================================
+   SECTION
+========================================== */
+
+.section-title {
+    font-size: 40px;
+
+    font-weight: 1000;
+}
+
+
+/* ==========================================
+   CATEGORY BUTTONS
+========================================== */
+
+.category-button {
+    background: #282421;
+
+    border:
+        1px solid #4c3c2b;
+
+    color: #aaa;
+
+    font-weight: 800;
+
+    font-size: 12px;
+}
+
+.category-button:hover {
+    color: white;
+
+    border-color:
+        #6cab35;
+}
+
+.category-button.active {
+    background:
+        linear-gradient(
+            135deg,
+            #e5c22d,
+            #60a92e
+        );
+
+    color: #111;
+
+    border-color: transparent;
+}
+
+
+/* ==========================================
+   CHARACTER CARD
+========================================== */
+
+.character-card {
+    background:
+        #201d1a;
+
+    border:
+        1px solid #4c3c2b;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    transition:
+        0.25s ease;
+}
+
+.character-card:hover {
+    transform:
+        translateY(-6px);
+
+    border-color:
+        #6cad34;
+}
+
+.character-image-box {
+    height: 270px;
+
+    background: #f4f4f4;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.character-image {
+    height: 100%;
+
+    width: 100%;
+
+    object-fit: contain;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.character-card:hover
+.character-image {
+    transform:
+        scale(1.04);
+}
+
+.character-name {
+    color: #fff;
+
+    font-weight: 900;
+
+    font-size: 24px;
+}
+
+.character-description {
+    color: #888;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    min-height: 62px;
+}
+
+.character-badge {
+    background: #5da62e;
+
+    color: white;
+
+    font-weight: 800;
+
+    font-size: 10px;
+}
+
+.stat-badge {
+    background: #34302d;
+
+    color: #ccc;
+
+    font-size: 9px;
+
+    margin-right: 4px;
+}
+
+.view-button {
+    background:
+        linear-gradient(
+            135deg,
+            #e5c22d,
+            #60a92e
+        );
+
+    border: none;
+
+    color: #111;
+
+    font-weight: 900;
+}
+
+.view-button:hover {
+    color: #111;
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* ==========================================
+   API
+========================================== */
+
+.api-box {
+    background:
+        rgba(36, 32, 28, 0.9);
+
+    border:
+        1px solid #4d3d2c;
+
+    border-radius: 16px;
+}
+
+.api-box h2 {
+    font-weight: 900;
+}
+
+.api-badge {
+    background:
+        #5ca82e;
+
+    color: white;
+
+    padding: 10px 14px;
+}
+
+
+
+
+.about-box {
+    max-width: 900px;
+}
+
+
+
+
+.detail-image-box {
+    min-height: 500px;
+
+    background: #f5f5f5;
+
+    border:
+        2px solid #5f873b;
+
+    border-radius: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.detail-image-box img {
+    max-height: 500px;
+
+    width: 100%;
+
+    object-fit: contain;
+}
+
+.detail-title {
+    font-size:
+        clamp(50px, 7vw, 85px);
+
+    line-height: 0.95;
+
+    font-weight: 1000;
+
+    letter-spacing: -2px;
+}
+
+.detail-description {
+    color: #888;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    max-width: 800px;
+}
+
+
+
+.save-button {
+    background:
+        linear-gradient(
+            135deg,
+            #e5c22d,
+            #60a92e
+        );
+
+    color: #111;
+
+    border: none;
+
+    font-weight: 900;
+}
+
+.save-button:hover {
+    color: #111;
+}
+
+.save-button.saved {
+    background: #ff3c9b;
+
+    color: white;
+}
+
+.navigation-button {
+    background: transparent;
+
+    border:
+        1px solid #57442f;
+
+    color: white;
+
+    font-weight: 800;
+}
+
+.navigation-button:hover {
+    border-color: #6cae35;
+
+    color: white;
+}
+
+.navigation-button:disabled {
+    opacity: 0.35;
+
+    cursor: not-allowed;
+}
+
+
+
+
+.section-heading-line {
+    border-left:
+        6px solid #63b52b;
+
+    padding-left: 14px;
+}
+
+.section-heading-line h2 {
+    font-size: 32px;
+
+    font-weight: 1000;
+
+    letter-spacing: 2px;
+}
+
+
+
+
+.stat-card {
+    background: #211e1b;
+
+    border:
+        1px solid #55432e;
+
+    border-radius: 15px;
+
+    color: white;
+}
+
+.stat-card h3 {
+    color: #61ad2e;
+
+    font-size: 21px;
+
+    font-weight: 900;
+
+    margin-bottom: 8px;
+}
+
+.stat-card p {
+    color: #888;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    font-weight: 900;
+
+    margin: 0;
+}
+
+
+
+
+.level-card {
+    background: #211e1b;
+
+    border:
+        1px solid #55432e;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    color: white;
+}
+
+.level-card .card-header {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(95, 75, 34, 0.5),
+            transparent
+        );
+
+    border-bottom:
+        1px solid #453729;
+}
+
+.level-badge {
+    background:
+        linear-gradient(
+            135deg,
+            #e5c22d,
+            #60a92e
+        );
+
+    color: #111;
+
+    font-weight: 900;
+}
+
+.level-label {
+    display: block;
+
+    color: #777;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    font-weight: 900;
+
+    margin-bottom: 5px;
+}
+
+.level-stat strong {
+    color: white;
+}
+
+
+
+
+.info-card {
+    background: #211e1b;
+
+    border:
+        1px solid #4d3d2c;
+
+    border-radius: 14px;
+
+    padding: 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.info-card span {
+    color: #777;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+.info-card strong {
+    color: #61ad2e;
+
+    font-size: 14px;
+}
+
+
+
+
+@media (max-width: 768px) {
+
+    .hero-section {
+        min-height: 400px;
+    }
+
+    .hero-title {
+        font-size: 58px;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    .detail-title {
+        font-size: 55px;
+    }
+
+    .detail-image-box {
+        min-height: 380px;
+    }
+
+}

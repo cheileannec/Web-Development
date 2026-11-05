@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>Character Details - Clash Troops</title>
+
+
+    <!-- BOOTSTRAP -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- CUSTOM CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav
+    class="navbar navbar-expand-lg navbar-dark clash-navbar"
+>
+
+    <div class="container">
+
+        <a
+            class="navbar-brand clash-logo"
+            href="index.html"
+        >
+            CLASH TROOPS
+        </a>
+
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNav"
+        >
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <div
+            class="collapse navbar-collapse"
+            id="mainNav"
+        >
+
+            <ul
+                class="navbar-nav ms-auto"
+            >
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="index.html"
+                    >
+                        HOME
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="index.html#troops"
+                    >
+                        TROOPS
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="index.html#about"
+                    >
+                        ABOUT
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <span class="nav-link">
+                        ♥
+                        <span id="favoriteCount">
+                            0
+                        </span>
+                    </span>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- CHARACTER DETAILS -->
+
+<main class="py-5">
+
+    <div class="container">
+
+
+        <!-- MAIN DETAIL -->
+
+        <div class="row g-5 align-items-center mb-5">
+
+
+            <!-- IMAGE -->
+
+            <div class="col-lg-5">
+
+                <div class="detail-image-box">
+
+                    <img
+                        id="characterImage"
+                        src=""
+                        alt="Character"
+                        class="img-fluid"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- INFORMATION -->
+
+            <div class="col-lg-7">
+
+                <p
+                    id="characterType"
+                    class="eyebrow"
+                >
+                    LOADING...
+                </p>
+
+
+                <h1
+                    id="characterName"
+                    class="detail-title"
+                >
+                    Loading...
+                </h1>
+
+
+                <div
+                    id="characterTags"
+                    class="mb-4"
+                >
+                </div>
+
+
+                <p
+                    id="characterDescription"
+                    class="detail-description"
+                >
+                    Loading character information...
+                </p>
+
+
+                <!-- BUTTONS -->
+
+                <div
+                    class="d-flex flex-wrap gap-2"
+                >
+
+                    <button
+                        id="saveButton"
+                        class="btn save-button"
+                    >
+                        ♡ SAVE
+                    </button>
+
+
+                    <button
+                        id="previousButton"
+                        class="btn navigation-button"
+                    >
+                        ← PREVIOUS
+                    </button>
+
+
+                    <button
+                        id="nextButton"
+                        class="btn navigation-button"
+                    >
+                        NEXT →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- STATS -->
+
+        <section class="mb-5">
+
+            <div class="section-heading-line mb-4">
+
+                <h2>
+                    STATS
+                </h2>
+
+            </div>
+
+
+            <div class="row g-3">
+
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card stat-card h-100">
+
+                        <div class="card-body text-center">
+
+                            <h3 id="statTarget">
+                                —
+                            </h3>
+
+                            <p>
+                                FAVORITE TARGET
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card stat-card h-100">
+
+                        <div class="card-body text-center">
+
+                            <h3 id="statDamage">
+                                —
+                            </h3>
+
+                            <p>
+                                DAMAGE TYPE
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card stat-card h-100">
+
+                        <div class="card-body text-center">
+
+                            <h3 id="statHousing">
+                                —
+                            </h3>
+
+                            <p>
+                                HOUSING SPACE
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card stat-card h-100">
+
+                        <div class="card-body text-center">
+
+                            <h3 id="statRange">
+                                —
+                            </h3>
+
+                            <p>
+                                RANGE
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card stat-card h-100">
+
+                        <div class="card-body text-center">
+
+                            <h3 id="statMovement">
+                                —
+                            </h3>
+
+                            <p>
+                                MOVEMENT SPEED
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card stat-card h-100">
+
+                        <div class="card-body text-center">
+
+                            <h3 id="statAttackSpeed">
+                                —
+                            </h3>
+
+                            <p>
+                                ATTACK SPEED
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card stat-card h-100">
+
+                        <div class="card-body text-center">
+
+                            <h3 id="statTraining">
+                                —
+                            </h3>
+
+                            <p>
+                                TRAINING TIME
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-md-3">
+
+                    <div class="card stat-card h-100">
+
+                        <div class="card-body text-center">
+
+                            <h3 id="statLevels">
+                                —
+                            </h3>
+
+                            <p>
+                                AVAILABLE LEVELS
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- LEVELS -->
+
+        <section class="mb-5">
+
+            <div class="section-heading-line mb-4">
+
+                <h2>
+                    LEVELS
+                </h2>
+
+            </div>
+
+
+            <div
+                id="levelsContainer"
+                class="row g-3"
+            >
+
+                <div class="col-12 text-center">
+                    Loading levels...
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- EXTRA INFO -->
+
+        <section>
+
+            <div class="row g-3">
+
+
+                <div class="col-md-6">
+
+                    <div class="info-card">
+
+                        <span>
+                            CATEGORY
+                        </span>
+
+                        <strong id="characterCategory">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <div class="info-card">
+
+                        <span>
+                            CHARACTER ID
+                        </span>
+
+                        <strong id="characterId">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+
+<!-- FOOTER -->
+
+<footer class="py-4">
+
+    <div class="container text-center">
+
+        <p class="mb-0 text-secondary">
+            © 2026 Clash Troops School Project
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- BOOTSTRAP JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+
+<script>
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const characterId =
+    params.get("id");
+
+
+let currentCharacter = null;
+let allCharacters = [];
+
+
+// LOAD CHARACTER
+
+fetch(
+    "/characters/" +
+    encodeURIComponent(characterId)
+)
+    .then(response => response.json())
+    .then(data => {
+
+        if (!data.success) {
+            throw new Error(
+                data.message
+            );
+        }
+
+        currentCharacter =
+            data.character;
+
+        return fetch("/characters");
+
+    })
+    .then(response => response.json())
+    .then(data => {
+
+        allCharacters =
+            data.characters;
+
+        displayCharacter();
+
+        updateNavigation();
+
+        updateFavoriteButton();
+
+    })
+    .catch(error => {
+
+        document.getElementById(
+            "characterName"
+        ).textContent =
+            "Unable to Load Character";
+
+        document.getElementById(
+            "characterDescription"
+        ).textContent =
+            error.message;
+
+    });
+
+
+// DISPLAY CHARACTER
+
+function displayCharacter() {
+
+    const character =
+        currentCharacter;
+
+
+    document.getElementById(
+        "characterImage"
+    ).src =
+        character.image;
+
+
+    document.getElementById(
+        "characterImage"
+    ).alt =
+        character.name;
+
+
+    document.getElementById(
+        "characterName"
+    ).textContent =
+        character.name;
+
+
+    document.getElementById(
+        "characterType"
+    ).textContent =
+        `${character.type.toUpperCase()} • HOME VILLAGE`;
+
+
+    document.getElementById(
+        "characterDescription"
+    ).textContent =
+        character.description;
+
+
+    document.getElementById(
+        "characterCategory"
+    ).textContent =
+        character.category;
+
+
+    document.getElementById(
+        "characterId"
+    ).textContent =
+        character.id;
+
+
+    // TAGS
+
+    document.getElementById(
+        "characterTags"
+    ).innerHTML = `
+
+        <span class="badge character-badge me-1">
+            ${character.type}
+        </span>
+
+        <span class="badge stat-badge me-1">
+            ${character.targetType}
+        </span>
+
+        <span class="badge stat-badge">
+            ${character.damageType}
+        </span>
+
+    `;
+
+
+    // STATS
+
+    document.getElementById(
+        "statTarget"
+    ).textContent =
+        character.targetType;
+
+
+    document.getElementById(
+        "statDamage"
+    ).textContent =
+        character.damageType;
+
+
+    document.getElementById(
+        "statHousing"
+    ).textContent =
+        character.housingSpace;
+
+
+    document.getElementById(
+        "statRange"
+    ).textContent =
+        character.range;
+
+
+    document.getElementById(
+        "statMovement"
+    ).textContent =
+        character.movementSpeed;
+
+
+    document.getElementById(
+        "statAttackSpeed"
+    ).textContent =
+        character.attackSpeed;
+
+
+    document.getElementById(
+        "statTraining"
+    ).textContent =
+        character.trainingTime;
+
+
+    document.getElementById(
+        "statLevels"
+    ).textContent =
+        character.levels.length;
+
+
+    displayLevels(
+        character.levels
+    );
+
+}
+
+
+// DISPLAY LEVELS
+
+function displayLevels(levels) {
+
+    const container =
+        document.getElementById(
+            "levelsContainer"
+        );
+
+    container.innerHTML = "";
+
+
+    if (levels.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="col-12">
+
+                <div class="alert alert-secondary">
+                    Level information is not available.
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    levels.forEach(level => {
+
+        const column =
+            document.createElement("div");
+
+        column.className =
+            "col-12";
+
+
+        column.innerHTML = `
+
+            <div class="card level-card">
+
+                <div class="card-header">
+
+                    <span class="badge level-badge">
+                        LEVEL ${level.level}
+                    </span>
+
+                </div>
+
+
+                <div class="card-body">
+
+                    <div class="row g-3">
+
+                        <div class="col-6 col-md-3">
+
+                            <span class="level-label">
+                                DAMAGE / SECOND
+                            </span>
+
+                            <strong>
+                                ${level.damagePerSecond}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="col-6 col-md-3">
+
+                            <span class="level-label">
+                                DAMAGE / ATTACK
+                            </span>
+
+                            <strong>
+                                ${level.damagePerAttack}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="col-6 col-md-3">
+
+                            <span class="level-label">
+                                HITPOINTS
+                            </span>
+
+                            <strong>
+                                ${level.hitpoints}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="col-6 col-md-3">
+
+                            <span class="level-label">
+                                UPGRADE COST
+                            </span>
+
+                            <strong>
+                                ${level.cost}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="col-6 col-md-3">
+
+                            <span class="level-label">
+                                RESOURCE
+                            </span>
+
+                            <strong>
+                                ${level.costResource}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="col-6 col-md-3">
+
+                            <span class="level-label">
+                                TRAINING TIME
+                            </span>
+
+                            <strong>
+                                ${level.trainingTime}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="col-6 col-md-3">
+
+                            <span class="level-label">
+                                TOWN HALL
+                            </span>
+
+                            <strong>
+                                ${level.townHallLevel}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(column);
+
+    });
+
+}
+
+
+// PREVIOUS / NEXT
+
+function updateNavigation() {
+
+    const index =
+        allCharacters.findIndex(
+            character =>
+                character.id ===
+                currentCharacter.id
+        );
+
+
+    const previous =
+        document.getElementById(
+            "previousButton"
+        );
+
+
+    const next =
+        document.getElementById(
+            "nextButton"
+        );
+
+
+    if (index > 0) {
+
+        previous.disabled = false;
+
+        previous.onclick = function () {
+
+            window.location.href =
+                "view.html?id=" +
+                encodeURIComponent(
+                    allCharacters[
+                        index - 1
+                    ].id
+                );
+
+        };
+
+    } else {
+
+        previous.disabled = true;
+
+    }
+
+
+    if (
+        index <
+        allCharacters.length - 1
+    ) {
+
+        next.disabled = false;
+
+        next.onclick = function () {
+
+            window.location.href =
+                "view.html?id=" +
+                encodeURIComponent(
+                    allCharacters[
+                        index + 1
+                    ].id
+                );
+
+        };
+
+    } else {
+
+        next.disabled = true;
+
+    }
+
+}
+
+
+// FAVORITES
+
+function getFavorites() {
+
+    return JSON.parse(
+        localStorage.getItem(
+            "clashFavorites"
+        ) || "[]"
+    );
+
+}
+
+
+function updateFavoriteCount() {
+
+    const favorites =
+        getFavorites();
+
+    document.getElementById(
+        "favoriteCount"
+    ).textContent =
+        favorites.length;
+
+}
+
+
+function updateFavoriteButton() {
+
+    const favorites =
+        getFavorites();
+
+    const button =
+        document.getElementById(
+            "saveButton"
+        );
+
+
+    if (
+        favorites.includes(
+            currentCharacter.id
+        )
+    ) {
+
+        button.textContent =
+            "♥ SAVED";
+
+        button.classList.add(
+            "saved"
+        );
+
+    } else {
+
+        button.textContent =
+            "♡ SAVE";
+
+        button.classList.remove(
+            "saved"
+        );
+
+    }
+
+}
+
+
+document.getElementById(
+    "saveButton"
+).addEventListener(
+    "click",
+    function () {
+
+        let favorites =
+            getFavorites();
+
+
+        if (
+            favorites.includes(
+                currentCharacter.id
+            )
+        ) {
+
+            favorites =
+                favorites.filter(
+                    id =>
+                        id !==
+                        currentCharacter.id
+                );
+
+        } else {
+
+            favorites.push(
+                currentCharacter.id
+            );
+
+        }
+
+
+        localStorage.setItem(
+            "clashFavorites",
+            JSON.stringify(
+                favorites
+            )
+        );
+
+
+        updateFavoriteButton();
+
+        updateFavoriteCount();
+
+    }
+);
+
+
+updateFavoriteCount();
+
+</script>
+
+
+</body>
+
+</html>
