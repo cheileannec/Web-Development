@@ -1,510 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Clash Troops</title>
 
-
-    <!-- BOOTSTRAP -->
-
+    <!-- Bootstrap -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet"
     >
 
-
-    <!-- CUSTOM CSS -->
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <!-- Your design -->
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-
 <!-- NAVBAR -->
-
-<nav
-    class="navbar navbar-expand-lg navbar-dark clash-navbar"
->
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-
-        <a
-            class="navbar-brand clash-logo"
-            href="index.html"
-        >
-            CLASH TROOPS
+        <a class="navbar-brand fw-bold" href="index.html">
+            ⚔️ CLASH TROOPS
         </a>
-
 
         <button
             class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#mainNav"
+            data-bs-target="#navbarNav"
         >
-
             <span class="navbar-toggler-icon"></span>
-
         </button>
 
-
-        <div
-            class="collapse navbar-collapse"
-            id="mainNav"
-        >
-
-            <ul
-                class="navbar-nav ms-auto"
-            >
-
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a
-                        class="nav-link active"
-                        href="index.html"
-                    >
-                        HOME
-                    </a>
+                    <a class="nav-link active" href="index.html">Home</a>
                 </li>
-
                 <li class="nav-item">
-                    <a
-                        class="nav-link"
-                        href="#troops"
-                    >
-                        TROOPS
-                    </a>
+                    <a class="nav-link" href="#characters">Characters</a>
                 </li>
-
                 <li class="nav-item">
-                    <a
-                        class="nav-link"
-                        href="#about"
-                    >
-                        ABOUT
-                    </a>
+                    <a class="nav-link" href="#about">About</a>
                 </li>
-
-                <li class="nav-item">
-                    <span class="nav-link">
-                        ♥
-                        <span id="favoriteCount">
-                            0
-                        </span>
-                    </span>
-                </li>
-
             </ul>
-
         </div>
-
     </div>
-
 </nav>
 
 
-
 <!-- HERO -->
+<section class="hero-section text-center">
+    <div class="container py-5">
 
-<section class="hero-section">
+        <h1 class="display-4 fw-bold">
+            CLASH TROOPS
+        </h1>
 
-    <div class="container">
+        <p class="lead">
+            Explore Clash of Clans characters and their information.
+        </p>
 
-        <div class="row align-items-center">
-
-            <div class="col-lg-8">
-
-                <p class="eyebrow">
-                    CLASH OF CLANS DATABASE
-                </p>
-
-                <h1 class="hero-title">
-                    CLASH TROOPS
-                </h1>
-
-                <p class="hero-text">
-                    Explore the Clash of Clans character
-                    collection and discover troops, heroes,
-                    spells, siege machines, pets and hero
-                    equipment.
-                </p>
-
-                <a
-                    href="#troops"
-                    class="btn clash-button"
-                >
-                    EXPLORE TROOPS
-                </a>
-
-            </div>
-
-        </div>
+        <a href="#characters" class="btn btn-warning btn-lg fw-bold">
+            Explore Characters
+        </a>
 
     </div>
-
 </section>
-
 
 
 <!-- CHARACTERS -->
+<section id="characters" class="container py-5">
 
-<section
-    id="troops"
-    class="py-5"
->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">YOUR CLASH CHARACTERS</h2>
 
-    <div class="container">
+        <p id="characterCount" class="text-muted">
+            Loading characters...
+        </p>
+    </div>
 
 
-        <!-- TITLE -->
+    <!-- FILTER BUTTONS -->
+    <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
 
-        <div
-            class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4"
+        <button
+            class="btn btn-outline-warning filter-btn active"
+            data-category="all"
         >
+            All
+        </button>
 
-            <div>
+        <button
+            class="btn btn-outline-warning filter-btn"
+            data-category="troop"
+        >
+            Troops
+        </button>
 
-                <p class="eyebrow">
-                    CHARACTER COLLECTION
-                </p>
+        <button
+            class="btn btn-outline-warning filter-btn"
+            data-category="spell"
+        >
+            Spells
+        </button>
 
-                <h2 class="section-title">
-                    YOUR CLASH CHARACTERS
-                </h2>
+        <button
+            class="btn btn-outline-warning filter-btn"
+            data-category="hero"
+        >
+            Heroes
+        </button>
 
-            </div>
+        <button
+            class="btn btn-outline-warning filter-btn"
+            data-category="siege"
+        >
+            Siege Machines
+        </button>
+
+    </div>
 
 
-            <p
-                id="characterCount"
-                class="text-secondary"
+    <!-- SEARCH -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-6">
+
+            <input
+                type="text"
+                id="searchInput"
+                class="form-control"
+                placeholder="Search character..."
             >
-                Loading...
+
+        </div>
+    </div>
+
+
+    <!-- CARDS -->
+    <div
+        id="characterGrid"
+        class="row g-4"
+    >
+    </div>
+
+
+    <!-- ERROR -->
+    <div
+        id="errorMessage"
+        class="alert alert-danger text-center d-none"
+    >
+    </div>
+
+</section>
+
+
+<!-- API INFORMATION -->
+<section class="container py-5">
+
+    <div class="card bg-dark text-light border-warning">
+
+        <div class="card-body text-center">
+
+            <h3 class="fw-bold">
+                Clash of Clans Data
+            </h3>
+
+            <p class="mb-0">
+                Character information is loaded dynamically from
+                Clash of Clans game data.
             </p>
 
         </div>
 
-
-
-        <!-- FILTER -->
-
-        <div
-            class="d-flex flex-wrap gap-2 mb-4"
-        >
-
-            <button
-                class="btn category-button active"
-                data-category="All"
-            >
-                All
-            </button>
-
-            <button
-                class="btn category-button"
-                data-category="Troops"
-            >
-                Troops
-            </button>
-
-            <button
-                class="btn category-button"
-                data-category="Heroes"
-            >
-                Heroes
-            </button>
-
-            <button
-                class="btn category-button"
-                data-category="Spells"
-            >
-                Spells
-            </button>
-
-            <button
-                class="btn category-button"
-                data-category="Siege Machines"
-            >
-                Siege Machines
-            </button>
-
-            <button
-                class="btn category-button"
-                data-category="Pets"
-            >
-                Pets
-            </button>
-
-            <button
-                class="btn category-button"
-                data-category="Hero Equipment"
-            >
-                Hero Equipment
-            </button>
-
-        </div>
-
-
-
-        <!-- CHARACTER CARDS -->
-
-        <div
-            id="characterGrid"
-            class="row g-4"
-        >
-
-            <div class="col-12">
-
-                <div class="text-center py-5">
-                    Loading characters...
-                </div>
-
-            </div>
-
-        </div>
-
     </div>
 
 </section>
-
-
-
-<!-- API SECTION -->
-
-<section class="py-5">
-
-    <div class="container">
-
-        <div class="api-box p-4">
-
-            <div class="row align-items-center">
-
-                <div class="col-md-8">
-
-                    <p class="eyebrow">
-                        CLASH TROOPS API
-                    </p>
-
-                    <h2>
-                        CHARACTER DATA
-                    </h2>
-
-                    <p class="text-secondary mb-0">
-                        Character information is loaded
-                        dynamically from the Clash of Clans
-                        game data package.
-                    </p>
-
-                </div>
-
-
-                <div class="col-md-4 text-md-end mt-3 mt-md-0">
-
-                    <span class="badge api-badge">
-                        ● DATA CONNECTED
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
 
 
 <!-- ABOUT -->
+<section id="about" class="container py-5">
 
-<section
-    id="about"
-    class="py-5"
->
+    <div class="text-center">
 
-    <div class="container">
+        <h2 class="fw-bold">
+            ABOUT THIS PROJECT
+        </h2>
 
-        <div class="about-box">
-
-            <p class="eyebrow">
-                ABOUT THE PROJECT
-            </p>
-
-            <h2 class="section-title">
-                CLASH TROOPS
-            </h2>
-
-            <p class="text-secondary">
-                A school web development project inspired
-                by Clash of Clans. Browse characters and
-                explore their information through an
-                interactive website.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- FOOTER -->
-
-<footer class="py-4">
-
-    <div class="container text-center">
-
-        <p class="mb-0 text-secondary">
-            © 2026 Clash Troops School Project
+        <p>
+            This website is a school project created to display
+            Clash of Clans characters using HTML, CSS, Bootstrap,
+            JavaScript and external data.
         </p>
 
     </div>
 
+</section>
+
+
+<!-- FOOTER -->
+<footer class="bg-dark text-light text-center py-4">
+
+    <p class="mb-0">
+        © 2026 Clash Troops | School Project
+    </p>
+
 </footer>
 
 
-
-<!-- BOOTSTRAP JS -->
-
+<!-- Bootstrap JS -->
 <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-></script>
-
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+</script>
 
 
 <script>
 
+const DATA_URL =
+    "https://raw.githubusercontent.com/Statscell/clash-of-clans-data/main/output/troopUpgradeStats.json";
+
 let allCharacters = [];
+let currentCategory = "all";
 
 
-// LOAD CHARACTERS
+/*
+    LOAD DATA
+*/
+fetch(DATA_URL)
+    .then(response => {
 
-fetch("/characters")
-    .then(response => response.json())
-    .then(data => {
-
-        if (!data.success) {
-            throw new Error(data.message);
+        if (!response.ok) {
+            throw new Error("Unable to load Clash of Clans data.");
         }
 
-        allCharacters =
-            data.characters;
+        return response.json();
+    })
 
-        document.getElementById(
-            "characterCount"
-        ).textContent =
-            `${data.count} Characters`;
+    .then(data => {
 
-        displayCharacters(
-            allCharacters
-        );
+        /*
+            Only Home Village troops, spells,
+            heroes and siege machines
+        */
+        allCharacters = data
+            .filter(character => character.village === "home")
+            .filter(character =>
+                character.category === "troop" ||
+                character.category === "spell" ||
+                character.category === "hero"
+            )
+            .filter(character => character.subCategory !== "siege");
+
+
+        /*
+            Add siege machines separately
+        */
+        const siegeMachines = data
+            .filter(character =>
+                character.village === "home" &&
+                character.subCategory === "siege"
+            );
+
+
+        allCharacters = [
+            ...allCharacters,
+            ...siegeMachines
+        ];
+
+
+        document.getElementById("characterCount").textContent =
+            `${allCharacters.length} Characters`;
+
+        displayCharacters(allCharacters);
 
     })
+
     .catch(error => {
 
-        document.getElementById(
-            "characterGrid"
-        ).innerHTML = `
+        console.error(error);
 
-            <div class="col-12">
+        const errorMessage =
+            document.getElementById("errorMessage");
 
-                <div class="alert alert-danger">
-                    Unable to load characters:
-                    ${error.message}
-                </div>
+        errorMessage.textContent =
+            "Unable to load Clash of Clans characters. Please try again.";
 
-            </div>
+        errorMessage.classList.remove("d-none");
 
-        `;
+        document.getElementById("characterCount").textContent =
+            "Unable to load characters.";
 
     });
 
 
-// DISPLAY CHARACTERS
 
+/*
+    DISPLAY CHARACTERS
+*/
 function displayCharacters(characters) {
 
     const grid =
-        document.getElementById(
-            "characterGrid"
-        );
+        document.getElementById("characterGrid");
 
     grid.innerHTML = "";
 
 
+    if (characters.length === 0) {
+
+        grid.innerHTML = `
+            <div class="col-12 text-center">
+                <div class="alert alert-warning">
+                    No characters found.
+                </div>
+            </div>
+        `;
+
+        return;
+    }
+
+
     characters.forEach(character => {
 
-        const column =
+        const card =
             document.createElement("div");
 
-        column.className =
-            "col-sm-6 col-lg-4 col-xl-3";
+        card.className =
+            "col-md-6 col-lg-4";
 
 
-        column.innerHTML = `
-
-            <div class="card character-card h-100">
-
-                <div class="character-image-box">
-
-                    <img
-                        src="${character.image}"
-                        class="card-img-top character-image"
-                        alt="${character.name}"
-                    >
-
-                </div>
+        const category =
+            getCategory(character);
 
 
-                <div class="card-body">
+        const icon =
+            getIcon(category);
 
-                    <span class="badge character-badge mb-2">
-                        ${character.type}
+
+        card.innerHTML = `
+
+            <div class="card h-100 shadow-sm">
+
+                <div class="card-body text-center">
+
+                    <div class="display-3 mb-3">
+                        ${icon}
+                    </div>
+
+                    <h4 class="card-title fw-bold">
+                        ${character.name}
+                    </h4>
+
+                    <span class="badge bg-warning text-dark mb-3">
+                        ${category.toUpperCase()}
                     </span>
 
-
-                    <h5 class="card-title character-name">
-                        ${character.name}
-                    </h5>
-
-
-                    <p class="card-text character-description">
-                        ${character.description}
+                    <p class="card-text">
+                        ${getDescription(character)}
                     </p>
 
+                    <div class="d-flex justify-content-center gap-2">
 
-                    <div class="mb-3">
-
-                        <span class="badge stat-badge">
-                            ${character.targetType}
+                        <span class="badge bg-secondary">
+                            TH ${character.unlock?.hall ?? "—"}
                         </span>
 
-                        <span class="badge stat-badge">
-                            ${character.damageType}
-                        </span>
+                        ${
+                            character.housingSpace
+                            ? `
+                                <span class="badge bg-dark">
+                                    Space ${character.housingSpace}
+                                </span>
+                              `
+                            : ""
+                        }
 
                     </div>
 
-
                     <a
                         href="view.html?id=${encodeURIComponent(character.id)}"
-                        class="btn view-button w-100"
+                        class="btn btn-warning mt-3 fw-bold"
                     >
-                        VIEW DETAILS
+                        View Details
                     </a>
 
                 </div>
@@ -514,92 +392,145 @@ function displayCharacters(characters) {
         `;
 
 
-        grid.appendChild(column);
+        grid.appendChild(card);
 
     });
 
 }
 
 
-// FILTER
 
-document
-    .querySelectorAll(".category-button")
+/*
+    CATEGORY
+*/
+function getCategory(character) {
+
+    if (character.subCategory === "siege") {
+        return "siege";
+    }
+
+    return character.category || "other";
+}
+
+
+
+/*
+    ICON
+*/
+function getIcon(category) {
+
+    if (category === "troop") {
+        return "⚔️";
+    }
+
+    if (category === "spell") {
+        return "✨";
+    }
+
+    if (category === "hero") {
+        return "👑";
+    }
+
+    if (category === "siege") {
+        return "🏰";
+    }
+
+    return "⚔️";
+}
+
+
+
+/*
+    DESCRIPTION
+*/
+function getDescription(character) {
+
+    if (character.description) {
+        return character.description;
+    }
+
+    return `${character.name} is a Clash of Clans ${getCategory(character)}.`;
+}
+
+
+
+/*
+    FILTER
+*/
+document.querySelectorAll(".filter-btn")
     .forEach(button => {
 
-        button.addEventListener(
-            "click",
-            function () {
+        button.addEventListener("click", function () {
 
-                document
-                    .querySelectorAll(
-                        ".category-button"
-                    )
-                    .forEach(item => {
-                        item.classList.remove(
-                            "active"
-                        );
-                    });
-
-
-                this.classList.add(
-                    "active"
+            document
+                .querySelectorAll(".filter-btn")
+                .forEach(btn =>
+                    btn.classList.remove("active")
                 );
 
+            this.classList.add("active");
 
-                const category =
-                    this.dataset.category;
+            currentCategory =
+                this.dataset.category;
 
+            applyFilters();
 
-                if (category === "All") {
-
-                    displayCharacters(
-                        allCharacters
-                    );
-
-                } else {
-
-                    const filtered =
-                        allCharacters.filter(
-                            character =>
-                                character.category ===
-                                category
-                        );
-
-                    displayCharacters(
-                        filtered
-                    );
-
-                }
-
-            }
-        );
+        });
 
     });
 
 
-// FAVORITES
 
-function updateFavoriteCount() {
+/*
+    SEARCH
+*/
+document
+    .getElementById("searchInput")
+    .addEventListener("input", function () {
 
-    const favorites =
-        JSON.parse(
-            localStorage.getItem(
-                "clashFavorites"
-            ) || "[]"
-        );
+        applyFilters();
 
-    document.getElementById(
-        "favoriteCount"
-    ).textContent =
-        favorites.length;
+    });
+
+
+
+/*
+    APPLY FILTERS
+*/
+function applyFilters() {
+
+    const search =
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+
+    const filtered =
+        allCharacters.filter(character => {
+
+            const category =
+                getCategory(character);
+
+            const matchesCategory =
+                currentCategory === "all" ||
+                category === currentCategory;
+
+            const matchesSearch =
+                character.name
+                    .toLowerCase()
+                    .includes(search);
+
+            return matchesCategory && matchesSearch;
+
+        });
+
+
+    displayCharacters(filtered);
+
 }
-
-updateFavoriteCount();
 
 </script>
 
-
 </body>
-
 </html>

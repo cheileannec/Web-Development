@@ -7,26 +7,21 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1"
+        content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Character Details - Clash Troops</title>
+    <title>Character Details</title>
 
 
-    <!-- BOOTSTRAP -->
-
+    <!-- Bootstrap -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet"
     >
 
 
-    <!-- CUSTOM CSS -->
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <!-- Your design -->
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -35,18 +30,15 @@
 
 
 <!-- NAVBAR -->
-
-<nav
-    class="navbar navbar-expand-lg navbar-dark clash-navbar"
->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
     <div class="container">
 
         <a
-            class="navbar-brand clash-logo"
+            class="navbar-brand fw-bold"
             href="index.html"
         >
-            CLASH TROOPS
+            ⚔️ CLASH TROOPS
         </a>
 
 
@@ -54,7 +46,7 @@
             class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#mainNav"
+            data-bs-target="#navbarNav"
         >
 
             <span class="navbar-toggler-icon"></span>
@@ -64,47 +56,31 @@
 
         <div
             class="collapse navbar-collapse"
-            id="mainNav"
+            id="navbarNav"
         >
 
-            <ul
-                class="navbar-nav ms-auto"
-            >
+            <ul class="navbar-nav ms-auto">
 
                 <li class="nav-item">
+
                     <a
                         class="nav-link"
                         href="index.html"
                     >
-                        HOME
+                        Home
                     </a>
+
                 </li>
 
                 <li class="nav-item">
+
                     <a
                         class="nav-link"
-                        href="index.html#troops"
+                        href="index.html#characters"
                     >
-                        TROOPS
+                        Characters
                     </a>
-                </li>
 
-                <li class="nav-item">
-                    <a
-                        class="nav-link"
-                        href="index.html#about"
-                    >
-                        ABOUT
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <span class="nav-link">
-                        ♥
-                        <span id="favoriteCount">
-                            0
-                        </span>
-                    </span>
                 </li>
 
             </ul>
@@ -117,99 +93,139 @@
 
 
 
-<!-- CHARACTER DETAILS -->
+<!-- DETAIL -->
+<section class="container py-5">
 
-<main class="py-5">
+    <div id="loading" class="text-center">
 
-    <div class="container">
+        <div
+            class="spinner-border text-warning"
+            role="status"
+        ></div>
 
+        <p class="mt-3">
+            Loading character...
+        </p>
 
-        <!-- MAIN DETAIL -->
-
-        <div class="row g-5 align-items-center mb-5">
-
-
-            <!-- IMAGE -->
-
-            <div class="col-lg-5">
-
-                <div class="detail-image-box">
-
-                    <img
-                        id="characterImage"
-                        src=""
-                        alt="Character"
-                        class="img-fluid"
-                    >
-
-                </div>
-
-            </div>
+    </div>
 
 
-            <!-- INFORMATION -->
-
-            <div class="col-lg-7">
-
-                <p
-                    id="characterType"
-                    class="eyebrow"
-                >
-                    LOADING...
-                </p>
+    <div
+        id="errorMessage"
+        class="alert alert-danger text-center d-none"
+    ></div>
 
 
-                <h1
-                    id="characterName"
-                    class="detail-title"
-                >
-                    Loading...
-                </h1>
+    <div
+        id="characterDetails"
+        class="d-none"
+    >
+
+        <!-- BACK -->
+        <div class="mb-4">
+
+            <a
+                href="index.html"
+                class="btn btn-outline-warning"
+            >
+                ← Back to Characters
+            </a>
+
+        </div>
 
 
-                <div
-                    id="characterTags"
-                    class="mb-4"
-                >
-                </div>
+        <!-- MAIN CARD -->
+        <div class="card bg-dark text-light border-warning">
+
+            <div class="card-body">
+
+                <div class="row align-items-center">
 
 
-                <p
-                    id="characterDescription"
-                    class="detail-description"
-                >
-                    Loading character information...
-                </p>
+                    <!-- ICON -->
+                    <div class="col-md-4 text-center">
+
+                        <div
+                            id="characterIcon"
+                            class="display-1 mb-3"
+                        >
+                        </div>
+
+                    </div>
 
 
-                <!-- BUTTONS -->
+                    <!-- INFORMATION -->
+                    <div class="col-md-8">
 
-                <div
-                    class="d-flex flex-wrap gap-2"
-                >
-
-                    <button
-                        id="saveButton"
-                        class="btn save-button"
-                    >
-                        ♡ SAVE
-                    </button>
+                        <h1
+                            id="characterName"
+                            class="fw-bold"
+                        >
+                        </h1>
 
 
-                    <button
-                        id="previousButton"
-                        class="btn navigation-button"
-                    >
-                        ← PREVIOUS
-                    </button>
+                        <div class="mb-3">
+
+                            <span
+                                id="characterCategory"
+                                class="badge bg-warning text-dark"
+                            >
+                            </span>
+
+                            <span
+                                id="characterTownHall"
+                                class="badge bg-secondary"
+                            >
+                            </span>
+
+                        </div>
 
 
-                    <button
-                        id="nextButton"
-                        class="btn navigation-button"
-                    >
-                        NEXT →
-                    </button>
+                        <p id="characterDescription"></p>
+
+
+                        <div class="row g-2 mt-3">
+
+                            <div class="col-sm-6">
+
+                                <div class="border rounded p-3">
+
+                                    <small>
+                                        Housing Space
+                                    </small>
+
+                                    <div
+                                        id="housingSpace"
+                                        class="fw-bold fs-5"
+                                    >
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-sm-6">
+
+                                <div class="border rounded p-3">
+
+                                    <small>
+                                        Damage Per Second
+                                    </small>
+
+                                    <div
+                                        id="damagePerSecond"
+                                        class="fw-bold fs-5"
+                                    >
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -219,379 +235,241 @@
 
 
 
-        <!-- STATS -->
-
-        <section class="mb-5">
-
-            <div class="section-heading-line mb-4">
-
-                <h2>
-                    STATS
-                </h2>
-
-            </div>
-
-
-            <div class="row g-3">
-
-
-                <div class="col-6 col-md-3">
-
-                    <div class="card stat-card h-100">
-
-                        <div class="card-body text-center">
-
-                            <h3 id="statTarget">
-                                —
-                            </h3>
-
-                            <p>
-                                FAVORITE TARGET
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="col-6 col-md-3">
-
-                    <div class="card stat-card h-100">
-
-                        <div class="card-body text-center">
-
-                            <h3 id="statDamage">
-                                —
-                            </h3>
-
-                            <p>
-                                DAMAGE TYPE
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="col-6 col-md-3">
-
-                    <div class="card stat-card h-100">
-
-                        <div class="card-body text-center">
-
-                            <h3 id="statHousing">
-                                —
-                            </h3>
-
-                            <p>
-                                HOUSING SPACE
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="col-6 col-md-3">
-
-                    <div class="card stat-card h-100">
-
-                        <div class="card-body text-center">
-
-                            <h3 id="statRange">
-                                —
-                            </h3>
-
-                            <p>
-                                RANGE
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="col-6 col-md-3">
-
-                    <div class="card stat-card h-100">
-
-                        <div class="card-body text-center">
-
-                            <h3 id="statMovement">
-                                —
-                            </h3>
-
-                            <p>
-                                MOVEMENT SPEED
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="col-6 col-md-3">
-
-                    <div class="card stat-card h-100">
-
-                        <div class="card-body text-center">
-
-                            <h3 id="statAttackSpeed">
-                                —
-                            </h3>
-
-                            <p>
-                                ATTACK SPEED
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="col-6 col-md-3">
-
-                    <div class="card stat-card h-100">
-
-                        <div class="card-body text-center">
-
-                            <h3 id="statTraining">
-                                —
-                            </h3>
-
-                            <p>
-                                TRAINING TIME
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="col-6 col-md-3">
-
-                    <div class="card stat-card h-100">
-
-                        <div class="card-body text-center">
-
-                            <h3 id="statLevels">
-                                —
-                            </h3>
-
-                            <p>
-                                AVAILABLE LEVELS
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
         <!-- LEVELS -->
+        <div class="card mt-4">
 
-        <section class="mb-5">
+            <div class="card-body">
 
-            <div class="section-heading-line mb-4">
+                <h3 class="fw-bold mb-3">
+                    Character Levels
+                </h3>
 
-                <h2>
-                    LEVELS
-                </h2>
+
+                <div class="table-responsive">
+
+                    <table
+                        class="table table-dark table-striped table-hover"
+                    >
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Level
+                                </th>
+
+                                <th>
+                                    DPS
+                                </th>
+
+                                <th>
+                                    Upgrade Cost
+                                </th>
+
+                                <th>
+                                    Town Hall
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="levelTable">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             </div>
 
+        </div>
 
-            <div
-                id="levelsContainer"
-                class="row g-3"
+
+        <!-- NAVIGATION -->
+        <div
+            class="d-flex justify-content-between mt-4"
+        >
+
+            <button
+                id="previousButton"
+                class="btn btn-outline-warning"
             >
-
-                <div class="col-12 text-center">
-                    Loading levels...
-                </div>
-
-            </div>
-
-        </section>
+                ← Previous
+            </button>
 
 
+            <button
+                id="nextButton"
+                class="btn btn-outline-warning"
+            >
+                Next →
+            </button>
 
-        <!-- EXTRA INFO -->
-
-        <section>
-
-            <div class="row g-3">
-
-
-                <div class="col-md-6">
-
-                    <div class="info-card">
-
-                        <span>
-                            CATEGORY
-                        </span>
-
-                        <strong id="characterCategory">
-                            —
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <div class="col-md-6">
-
-                    <div class="info-card">
-
-                        <span>
-                            CHARACTER ID
-                        </span>
-
-                        <strong id="characterId">
-                            —
-                        </strong>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
+        </div>
 
     </div>
 
-</main>
+</section>
 
 
 
 <!-- FOOTER -->
+<footer class="bg-dark text-light text-center py-4">
 
-<footer class="py-4">
-
-    <div class="container text-center">
-
-        <p class="mb-0 text-secondary">
-            © 2026 Clash Troops School Project
-        </p>
-
-    </div>
+    <p class="mb-0">
+        © 2026 Clash Troops | School Project
+    </p>
 
 </footer>
 
 
 
-<!-- BOOTSTRAP JS -->
-
+<!-- Bootstrap JS -->
 <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-></script>
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+</script>
 
 
 
 <script>
 
+const DATA_URL =
+    "https://raw.githubusercontent.com/Statscell/clash-of-clans-data/main/output/troopUpgradeStats.json";
+
+
 const params =
-    new URLSearchParams(
-        window.location.search
-    );
+    new URLSearchParams(window.location.search);
+
 
 const characterId =
     params.get("id");
 
 
-let currentCharacter = null;
 let allCharacters = [];
+let currentCharacter = null;
 
 
-// LOAD CHARACTER
 
-fetch(
-    "/characters/" +
-    encodeURIComponent(characterId)
-)
-    .then(response => response.json())
-    .then(data => {
+/*
+    LOAD DATA
+*/
+fetch(DATA_URL)
 
-        if (!data.success) {
+    .then(response => {
+
+        if (!response.ok) {
+
             throw new Error(
-                data.message
+                "Unable to load Clash of Clans data."
             );
+
         }
 
-        currentCharacter =
-            data.character;
-
-        return fetch("/characters");
+        return response.json();
 
     })
-    .then(response => response.json())
+
     .then(data => {
 
-        allCharacters =
-            data.characters;
+
+        allCharacters = data
+
+            .filter(character =>
+                character.village === "home"
+            )
+
+            .filter(character =>
+                character.category === "troop" ||
+                character.category === "spell" ||
+                character.category === "hero"
+            );
+
+
+        const siegeMachines = data
+
+            .filter(character =>
+                character.village === "home" &&
+                character.subCategory === "siege"
+            );
+
+
+        allCharacters = [
+            ...allCharacters,
+            ...siegeMachines
+        ];
+
+
+        currentCharacter =
+            allCharacters.find(character =>
+                String(character.id) === String(characterId)
+            );
+
+
+        if (!currentCharacter) {
+
+            throw new Error(
+                "Character not found."
+            );
+
+        }
+
 
         displayCharacter();
 
         updateNavigation();
 
-        updateFavoriteButton();
+
+        document
+            .getElementById("loading")
+            .classList.add("d-none");
+
+
+        document
+            .getElementById("characterDetails")
+            .classList.remove("d-none");
 
     })
+
+
     .catch(error => {
 
-        document.getElementById(
-            "characterName"
-        ).textContent =
-            "Unable to Load Character";
+        console.error(error);
 
-        document.getElementById(
-            "characterDescription"
-        ).textContent =
+
+        document
+            .getElementById("loading")
+            .classList.add("d-none");
+
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+
+        errorMessage.textContent =
             error.message;
+
+
+        errorMessage.classList.remove("d-none");
 
     });
 
 
-// DISPLAY CHARACTER
 
+/*
+    DISPLAY CHARACTER
+*/
 function displayCharacter() {
 
     const character =
         currentCharacter;
 
 
-    document.getElementById(
-        "characterImage"
-    ).src =
-        character.image;
-
-
-    document.getElementById(
-        "characterImage"
-    ).alt =
-        character.name;
+    document.title =
+        character.name + " - Clash Troops";
 
 
     document.getElementById(
@@ -601,461 +479,306 @@ function displayCharacter() {
 
 
     document.getElementById(
-        "characterType"
+        "characterCategory"
     ).textContent =
-        `${character.type.toUpperCase()} • HOME VILLAGE`;
+        getCategory(character).toUpperCase();
+
+
+    document.getElementById(
+        "characterTownHall"
+    ).textContent =
+        "TH " +
+        (character.unlock?.hall ?? "—");
 
 
     document.getElementById(
         "characterDescription"
     ).textContent =
-        character.description;
+        character.description ||
+        `${character.name} is a Clash of Clans ${getCategory(character)}.`;
 
 
     document.getElementById(
-        "characterCategory"
+        "housingSpace"
     ).textContent =
-        character.category;
+        character.housingSpace ?? "—";
 
 
     document.getElementById(
-        "characterId"
+        "damagePerSecond"
     ).textContent =
-        character.id;
+        getDPS(character);
 
-
-    // TAGS
 
     document.getElementById(
-        "characterTags"
-    ).innerHTML = `
-
-        <span class="badge character-badge me-1">
-            ${character.type}
-        </span>
-
-        <span class="badge stat-badge me-1">
-            ${character.targetType}
-        </span>
-
-        <span class="badge stat-badge">
-            ${character.damageType}
-        </span>
-
-    `;
-
-
-    // STATS
-
-    document.getElementById(
-        "statTarget"
+        "characterIcon"
     ).textContent =
-        character.targetType;
+        getIcon(getCategory(character));
 
 
-    document.getElementById(
-        "statDamage"
-    ).textContent =
-        character.damageType;
-
-
-    document.getElementById(
-        "statHousing"
-    ).textContent =
-        character.housingSpace;
-
-
-    document.getElementById(
-        "statRange"
-    ).textContent =
-        character.range;
-
-
-    document.getElementById(
-        "statMovement"
-    ).textContent =
-        character.movementSpeed;
-
-
-    document.getElementById(
-        "statAttackSpeed"
-    ).textContent =
-        character.attackSpeed;
-
-
-    document.getElementById(
-        "statTraining"
-    ).textContent =
-        character.trainingTime;
-
-
-    document.getElementById(
-        "statLevels"
-    ).textContent =
-        character.levels.length;
-
-
-    displayLevels(
-        character.levels
-    );
+    displayLevels();
 
 }
 
 
-// DISPLAY LEVELS
 
-function displayLevels(levels) {
+/*
+    CATEGORY
+*/
+function getCategory(character) {
 
-    const container =
-        document.getElementById(
-            "levelsContainer"
-        );
+    if (character.subCategory === "siege") {
+        return "siege";
+    }
 
-    container.innerHTML = "";
+    return character.category || "other";
+
+}
 
 
-    if (levels.length === 0) {
 
-        container.innerHTML = `
+/*
+    ICON
+*/
+function getIcon(category) {
 
-            <div class="col-12">
+    if (category === "troop") {
+        return "⚔️";
+    }
 
-                <div class="alert alert-secondary">
-                    Level information is not available.
-                </div>
+    if (category === "spell") {
+        return "✨";
+    }
 
-            </div>
+    if (category === "hero") {
+        return "👑";
+    }
 
-        `;
+    if (category === "siege") {
+        return "🏰";
+    }
 
-        return;
+    return "⚔️";
+
+}
+
+
+
+/*
+    DPS
+*/
+function getDPS(character) {
+
+    if (
+        !character.dps ||
+        character.dps.length === 0
+    ) {
+
+        return "—";
+
     }
 
 
-    levels.forEach(level => {
-
-        const column =
-            document.createElement("div");
-
-        column.className =
-            "col-12";
-
-
-        column.innerHTML = `
-
-            <div class="card level-card">
-
-                <div class="card-header">
-
-                    <span class="badge level-badge">
-                        LEVEL ${level.level}
-                    </span>
-
-                </div>
-
-
-                <div class="card-body">
-
-                    <div class="row g-3">
-
-                        <div class="col-6 col-md-3">
-
-                            <span class="level-label">
-                                DAMAGE / SECOND
-                            </span>
-
-                            <strong>
-                                ${level.damagePerSecond}
-                            </strong>
-
-                        </div>
-
-
-                        <div class="col-6 col-md-3">
-
-                            <span class="level-label">
-                                DAMAGE / ATTACK
-                            </span>
-
-                            <strong>
-                                ${level.damagePerAttack}
-                            </strong>
-
-                        </div>
-
-
-                        <div class="col-6 col-md-3">
-
-                            <span class="level-label">
-                                HITPOINTS
-                            </span>
-
-                            <strong>
-                                ${level.hitpoints}
-                            </strong>
-
-                        </div>
-
-
-                        <div class="col-6 col-md-3">
-
-                            <span class="level-label">
-                                UPGRADE COST
-                            </span>
-
-                            <strong>
-                                ${level.cost}
-                            </strong>
-
-                        </div>
-
-
-                        <div class="col-6 col-md-3">
-
-                            <span class="level-label">
-                                RESOURCE
-                            </span>
-
-                            <strong>
-                                ${level.costResource}
-                            </strong>
-
-                        </div>
-
-
-                        <div class="col-6 col-md-3">
-
-                            <span class="level-label">
-                                TRAINING TIME
-                            </span>
-
-                            <strong>
-                                ${level.trainingTime}
-                            </strong>
-
-                        </div>
-
-
-                        <div class="col-6 col-md-3">
-
-                            <span class="level-label">
-                                TOWN HALL
-                            </span>
-
-                            <strong>
-                                ${level.townHallLevel}
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        `;
-
-
-        container.appendChild(column);
-
-    });
+    return character.dps[
+        character.dps.length - 1
+    ];
 
 }
 
 
-// PREVIOUS / NEXT
 
-function updateNavigation() {
+/*
+    LEVEL TABLE
+*/
+function displayLevels() {
 
-    const index =
-        allCharacters.findIndex(
-            character =>
-                character.id ===
-                currentCharacter.id
+    const table =
+        document.getElementById("levelTable");
+
+
+    table.innerHTML = "";
+
+
+    const dps =
+        currentCharacter.dps || [];
+
+
+    const upgrade =
+        currentCharacter.upgrade || {};
+
+
+    const costs =
+        upgrade.cost || [];
+
+
+    const hall =
+        currentCharacter.unlock?.hall || "—";
+
+
+    const maxLevels =
+        Math.max(
+            dps.length,
+            costs.length
         );
 
 
-    const previous =
+    for (
+        let i = 0;
+        i < maxLevels;
+        i++
+    ) {
+
+        const level =
+            i + 1;
+
+
+        const damage =
+            dps[i] ?? "—";
+
+
+        const cost =
+            costs[i] ?? "—";
+
+
+        const row =
+            document.createElement("tr");
+
+
+        row.innerHTML = `
+
+            <td>
+                ${level}
+            </td>
+
+            <td>
+                ${damage}
+            </td>
+
+            <td>
+                ${formatNumber(cost)}
+            </td>
+
+            <td>
+                ${hall}
+            </td>
+
+        `;
+
+
+        table.appendChild(row);
+
+    }
+
+}
+
+
+
+/*
+    FORMAT NUMBER
+*/
+function formatNumber(number) {
+
+    if (
+        number === "—" ||
+        number === undefined ||
+        number === null
+    ) {
+
+        return "—";
+
+    }
+
+
+    return Number(number).toLocaleString();
+
+}
+
+
+
+/*
+    PREVIOUS / NEXT
+*/
+function updateNavigation() {
+
+    const currentIndex =
+        allCharacters.findIndex(character =>
+            String(character.id) ===
+            String(characterId)
+        );
+
+
+    const previousButton =
         document.getElementById(
             "previousButton"
         );
 
 
-    const next =
+    const nextButton =
         document.getElementById(
             "nextButton"
         );
 
 
-    if (index > 0) {
+    previousButton.disabled =
+        currentIndex <= 0;
 
-        previous.disabled = false;
 
-        previous.onclick = function () {
+    nextButton.disabled =
+        currentIndex >=
+        allCharacters.length - 1;
 
-            window.location.href =
-                "view.html?id=" +
-                encodeURIComponent(
+
+
+    previousButton.onclick =
+        function () {
+
+            if (currentIndex > 0) {
+
+                const previous =
                     allCharacters[
-                        index - 1
-                    ].id
-                );
+                        currentIndex - 1
+                    ];
+
+
+                window.location.href =
+                    "view.html?id=" +
+                    encodeURIComponent(
+                        previous.id
+                    );
+
+            }
 
         };
 
-    } else {
-
-        previous.disabled = true;
-
-    }
 
 
-    if (
-        index <
-        allCharacters.length - 1
-    ) {
+    nextButton.onclick =
+        function () {
 
-        next.disabled = false;
+            if (
+                currentIndex <
+                allCharacters.length - 1
+            ) {
 
-        next.onclick = function () {
-
-            window.location.href =
-                "view.html?id=" +
-                encodeURIComponent(
+                const next =
                     allCharacters[
-                        index + 1
-                    ].id
-                );
+                        currentIndex + 1
+                    ];
+
+
+                window.location.href =
+                    "view.html?id=" +
+                    encodeURIComponent(
+                        next.id
+                    );
+
+            }
 
         };
 
-    } else {
-
-        next.disabled = true;
-
-    }
-
 }
-
-
-// FAVORITES
-
-function getFavorites() {
-
-    return JSON.parse(
-        localStorage.getItem(
-            "clashFavorites"
-        ) || "[]"
-    );
-
-}
-
-
-function updateFavoriteCount() {
-
-    const favorites =
-        getFavorites();
-
-    document.getElementById(
-        "favoriteCount"
-    ).textContent =
-        favorites.length;
-
-}
-
-
-function updateFavoriteButton() {
-
-    const favorites =
-        getFavorites();
-
-    const button =
-        document.getElementById(
-            "saveButton"
-        );
-
-
-    if (
-        favorites.includes(
-            currentCharacter.id
-        )
-    ) {
-
-        button.textContent =
-            "♥ SAVED";
-
-        button.classList.add(
-            "saved"
-        );
-
-    } else {
-
-        button.textContent =
-            "♡ SAVE";
-
-        button.classList.remove(
-            "saved"
-        );
-
-    }
-
-}
-
-
-document.getElementById(
-    "saveButton"
-).addEventListener(
-    "click",
-    function () {
-
-        let favorites =
-            getFavorites();
-
-
-        if (
-            favorites.includes(
-                currentCharacter.id
-            )
-        ) {
-
-            favorites =
-                favorites.filter(
-                    id =>
-                        id !==
-                        currentCharacter.id
-                );
-
-        } else {
-
-            favorites.push(
-                currentCharacter.id
-            );
-
-        }
-
-
-        localStorage.setItem(
-            "clashFavorites",
-            JSON.stringify(
-                favorites
-            )
-        );
-
-
-        updateFavoriteButton();
-
-        updateFavoriteCount();
-
-    }
-);
-
-
-updateFavoriteCount();
 
 </script>
 
-
 </body>
-
 </html>
