@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Story</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Inter:wght@400;500;600&family=Bricolage+Grotesque:wght@600;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  
+  <style>
+    body { background: #14080D; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    .font-heading { font-family: 'Bricolage Grotesque', sans-serif; }
+    .font-hand { font-family: 'Caveat', cursive; }
+
+
+    .bg { background-size: cover; background-position: 72% 20%; opacity: 0; transition: opacity 1.4s; }
+    .bg.on { opacity: 1; }
+    .shade {
+      background:
+        linear-gradient(90deg, rgba(20,8,13,.92) 0%, rgba(20,8,13,.55) 38%, rgba(20,8,13,0) 65%),
+        linear-gradient(0deg, rgba(20,8,13,1) 0%, rgba(20,8,13,.75) 22%, rgba(20,8,13,0) 55%);
+    }
+    .title { letter-spacing: .18em; }
+
+   
+    .nav-pills .nav-link { color: #D9B8AE; cursor: pointer; }
+    .nav-pills .nav-link.active { background: #F4E6E0; color: #2A0F17; }
+
+
+    .dot { width: 7px; height: 7px; background: rgba(255,255,255,.35); transition: .5s; cursor: pointer; }
+    .dot.on { width: 34px; background: #fff; }
+
+  
+    .cards { overflow: hidden; }
+    .track { width: max-content; animation: marquee 50s linear infinite; }
+    .cards:hover .track { animation-play-state: paused; }
+    @keyframes marquee { to { transform: translateX(calc(-50% - 12px)); } }
+    .card-item { width: 290px; cursor: pointer; }
+    .thumb { background-size: cover; background-position: center; transition: transform .4s; }
+    .card-item:hover .thumb { transform: translateY(-6px) scale(1.04); }
+    .card-item.active .thumb { box-shadow: 0 0 0 3px #FDA4AF !important; }
+
+    @media (max-width: 760px) { .card-item { width: 230px; } }
+  </style>
+</head>
+
+<body>
+
+  <div class="min-vh-100 d-flex flex-column position-relative overflow-hidden">
+    <div class="bg position-absolute top-0 start-0 w-100 h-100" id="bgA"></div>
+    <div class="bg position-absolute top-0 start-0 w-100 h-100" id="bgB"></div>
+    <div class="shade position-absolute top-0 start-0 w-100 h-100"></div>
+
+    <ul class="nav nav-pills rounded-pill p-2 gap-1 mx-auto mt-4 border bg-dark bg-opacity-50 position-relative z-3" id="menu"></ul>
+
+    <div class="container-fluid px-4 px-md-5 mt-auto pb-4 position-relative z-2" id="info">
+      <div class="font-hand fs-2 text-danger-emphasis" id="names"></div>
+      <h1 class="title font-heading display-1 fw-bold text-uppercase" id="title"></h1>
+      <div class="my-3 text-white-50 fw-semibold">
+        <span id="genre"></span>
+        <span class="badge border border-secondary ms-2" id="rating"></span>
+      </div>
+      <p class="lead col-md-7 col-lg-5" id="description"></p>
+      <button class="btn btn-outline-light btn-lg rounded-4 px-4" onclick="goDown()">Watch Our Story</button>
+    </div>
+
+    <div class="d-flex justify-content-center gap-2 mb-2 position-relative z-2" id="dots"></div>
+
+    <div class="py-4 position-relative z-2" id="row">
+      <h2 class="font-heading px-4 px-md-5" id="rowTitle"></h2>
+      <div class="cards py-3">
+        <div class="track d-flex gap-4" id="parent">
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+
+  <script>
+    var page = {
+      title: "Our Story",
+      names: "Chei & Alyannah",
+      rowTitle: "Up Next for Us",
+      tabs: ["Home", "Our Story", "Gallery", "Dates", "Memories"],
+      activeTab: 1
+    }
+
+    var episodes = [
+      {
+        title: "Mall of Asia - Seaside",
+        genre: "Sunset Romance",
+        rating: "Soulmates",
+        date: "July 03, 2026",
+        description: "By the seaside, with the city lights around us, I realized that no matter where life takes us, you're the person I want beside me, today and always.",
+        image: "others/photo-1.jpg",
+        hero: "others/hero-1.jpg",
+        gradient: ["#7F1D1D", "#EA580C"]
+      }, {
+        title: "Pride Month ",
+        genre: "Colorful Memories",
+        rating: "Magic",
+        date: "June 27, 2026",
+        description: "Some moments seem ordinary until they become unforgettable. That day, surrounded by colors and happiness, we made another beautiful memory together.",
+        image: "others/photo-2.jpg",
+        hero: "others/hero-2.jpg",
+        gradient: ["#9D174D", "#F97316"]
+      }, {
+        title: "Quiapo Church",
+        genre: "A Prayer for Us",
+        rating: "Devotion",
+        date: "February 01, 2026",
+        description: "In a place filled with prayers and hope, I found myself wishing for more days with you, more memories to share, and a love that keeps growing stronger.",
+        image: "others/photo-3.jpg",
+        hero: "others/hero-3.jpg",
+        gradient: ["#831843", "#FB7185"]
+      }, {
+        title: "ZUS Coffee",
+        genre: "Coffee & Company",
+        rating: "Comfort",
+        date: "July 02, 2026",
+        description: "A cup of coffee, endless conversations, and your smile across the table. It's funny how the simplest moments become special when I'm spending them with you.",
+        image: "others/photo-4.jpg",
+        hero: "others/hero-4.jpg",
+        gradient: ["#7C2D12", "#FBBF24"]
+      }, {
+        title: "KKK Monument",
+        genre: "Little Things",
+        rating: "Contentment",
+        date: "May 04, 2026",
+        description: "We didn't need anything extraordinary to make the day beautiful. Being together, sharing stories, and enjoying the little things reminded me that love is found in moments like these.",
+        image: "others/photo-5.jpg",
+        hero: "others/hero-5.jpg",
+        gradient: ["#881337", "#F59E0B"]
+      }, {
+        title: "Trees Residence, Quezon City",
+        genre: "Our Future",
+        rating: "Forever",
+        date: "March 15, 2026",
+        description: "This is only one chapter of our story, with countless more waiting to be written. Whatever the future holds, I hope we keep choosing each other, growing together, and turning every tomorrow into another beautiful memory.",
+        image: "others/photo-6.jpg",
+        hero: "others/hero-6.jpg",
+        gradient: ["#701A75", "#FB7185"]
+      }
+    ]
+
+    var parent = document.getElementById("parent");
+    var menu = document.getElementById("menu");
+    var dots = document.getElementById("dots");
+    var current = -1;
+    var layer = 0;
+    var timer;
+
+    document.title = page.title;
+    document.getElementById("names").innerHTML = page.names;
+    document.getElementById("rowTitle").innerHTML = page.rowTitle;
+
+
+    for (var i = 0; i < page.tabs.length; i++) {
+      var active = (i == page.activeTab) ? " active" : "";
+      menu.innerHTML += `<li class="nav-item"><a class="nav-link rounded-pill px-4` + active + `">` + page.tabs[i] + `</a></li>`;
+    }
+
+
+    for (var i = 0; i < episodes.length; i++) {
+      dots.innerHTML += `<i class="dot rounded-pill" onclick="pick(` + i + `)"></i>`;
+    }
+
+
+    for (var round = 0; round < 2; round++) {
+      for (var i = 0; i < episodes.length; i++) {
+        parent.innerHTML += `
+          <div class="card-item card bg-transparent border-0" onclick="pick(` + i + `); window.scrollTo({ top: 0, behavior: 'smooth' });">
+            <div class="thumb ratio ratio-16x9 rounded-4 shadow position-relative" style="background-image: url('` + episodes[i].image + `'), linear-gradient(135deg, ` + episodes[i].gradient[0] + `, ` + episodes[i].gradient[1] + `);">
+              <span class="badge text-bg-dark bg-opacity-50 position-absolute top-auto bottom-0 end-0 m-2 w-auto h-auto" style="inset: auto 0 0 auto;">` + episodes[i].genre + `</span>
+            </div>
+            <div class="card-body px-0 py-2">
+              <div class="fw-semibold">` + episodes[i].title + `</div>
+              <div class="text-secondary">` + episodes[i].date + `</div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+
+    function show(i) {
+      if (i == current) return;
+      current = i;
+
+      var next = layer ? document.getElementById("bgA") : document.getElementById("bgB");
+      var prev = layer ? document.getElementById("bgB") : document.getElementById("bgA");
+      next.style.backgroundImage = "url('" + episodes[i].hero + "'), linear-gradient(120deg, " + episodes[i].gradient[0] + ", " + episodes[i].gradient[1] + ")";
+      next.classList.add("on");
+      prev.classList.remove("on");
+      layer = 1 - layer;
+
+      document.getElementById("title").innerHTML = episodes[i].title;
+      document.getElementById("genre").innerHTML = episodes[i].genre;
+      document.getElementById("rating").innerHTML = episodes[i].rating;
+      document.getElementById("description").innerHTML = episodes[i].description;
+
+      var cards = document.querySelectorAll(".card-item");
+      for (var k = 0; k < cards.length; k++) {
+        cards[k].classList.toggle("active", k % episodes.length == i);
+      }
+      var dot = dots.querySelectorAll("i");
+      for (var k = 0; k < dot.length; k++) {
+        dot[k].classList.toggle("on", k == i);
+      }
+    }
+
+
+    function auto() {
+      clearInterval(timer);
+      timer = setInterval(function () {
+        show((current + 1) % episodes.length);
+      }, 7000);
+    }
+
+    function pick(i) {
+      show(i);
+      auto();
+    }
+
+    function goDown() {
+      document.getElementById("row").scrollIntoView({ behavior: "smooth" });
+    }
+
+
+    menu.addEventListener("click", function (e) {
+      var tabs = menu.querySelectorAll(".nav-link");
+      for (var k = 0; k < tabs.length; k++) tabs[k].classList.remove("active");
+      e.target.classList.add("active");
+    });
+
+    show(0);
+    auto();
+  </script>
+
+</body>
+
+</html>
