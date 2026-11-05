@@ -1,0 +1,13 @@
+{
+  "name": "clash-troops",
+  "version": "1.0.0",
+  "description": "Clash of Clans troops: a small API and a two-page Bootstrap website",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

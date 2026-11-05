@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clash of Clans</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  /* Clash of Clans palette: Village Green #5BA331, Builder Gold #E8B73D, Barbarian Red #E8232E,
+     Wizard Violet #7A2EE8, Wood Brown #7A5C3D, Stone Gray #9CA0A3, Sky Cyan #7AC8E0,
+     Elixir Pink #FF3D9C, Dragon Orange #FF7A2E, Town Hall Black #15110F */
+  :root, [data-bs-theme=dark] {
+    --coc-green: #5BA331; --coc-gold: #E8B73D; --coc-red: #E8232E; --coc-violet: #7A2EE8;
+    --coc-wood: #7A5C3D; --coc-stone: #9CA0A3; --coc-cyan: #7AC8E0; --coc-pink: #FF3D9C; --coc-orange: #FF7A2E;
+    --bs-body-bg: #15110F;
+    --bs-body-color: #f6efe4;
+    --bs-secondary-color: #a99d8d;
+    --bs-border-color: rgba(122,92,61,.6);
+    --bs-link-color: var(--coc-gold);
+    --bs-link-hover-color: var(--coc-orange);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background:
+      radial-gradient(600px 400px at 90% -5%, rgba(91,163,49,.28), transparent 70%),
+      radial-gradient(500px 400px at -5% 55%, rgba(255,122,46,.13), transparent 70%),
+      radial-gradient(500px 400px at 100% 80%, rgba(122,46,232,.15), transparent 70%),
+      #15110F;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  .navbar { backdrop-filter: blur(14px); background: rgba(21,17,15,.78); border-bottom: 3px solid var(--coc-gold); }
+  .brand-mark { background: linear-gradient(135deg, var(--coc-gold), var(--coc-green)); color: #15110F !important; font-weight: 900; letter-spacing: .04em; padding: .35rem .9rem; border-radius: .6rem; }
+  .navbar .nav-link { color: #f6efe4; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; font-size: .85rem; }
+  .navbar .nav-link:hover, .navbar .nav-link.active { color: var(--coc-gold); }
+
+  .btn-coc { --bs-btn-color: #15110F; --bs-btn-hover-color: #15110F; --bs-btn-active-color: #15110F; border: 0; font-weight: 800;
+    background: linear-gradient(135deg, var(--coc-gold), var(--coc-green)); box-shadow: 0 0 26px rgba(232,183,61,.28); }
+  .btn-coc:hover { filter: brightness(1.1); box-shadow: 0 0 38px rgba(232,183,61,.5); }
+  .btn-ghost { --bs-btn-color: #f6efe4; --bs-btn-border-color: var(--coc-wood); --bs-btn-hover-bg: rgba(122,92,61,.35);
+    --bs-btn-hover-border-color: var(--coc-gold); --bs-btn-hover-color: #fff; --bs-btn-active-bg: rgba(122,92,61,.5); font-weight: 700; }
+  .badge-fav { background: var(--coc-pink); color: #15110F; }
+
+  .title-grad { background: linear-gradient(100deg, var(--coc-green), var(--coc-gold) 55%, var(--coc-orange));
+    -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .live-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--coc-orange); box-shadow: 0 0 12px var(--coc-orange); animation: pulse 1.6s infinite; display: inline-block; }
+  @keyframes pulse { 50% { opacity: .3; } }
+
+  .glass { background: rgba(255,240,220,.05); border: 1px solid var(--bs-border-color); backdrop-filter: blur(10px); }
+  .stat b { display: block; font-size: 1.5rem; color: var(--coc-gold); }
+  .stat small { font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: var(--bs-secondary-color); }
+  h2.sec { font-weight: 900; text-transform: uppercase; letter-spacing: .02em; border-left: 6px solid var(--coc-gold); padding-left: .9rem; }
+
+  .tile { display: block; text-decoration: none; color: inherit; border-radius: 1.2rem; padding: 1rem 1.1rem; transition: transform .2s, border-color .2s, box-shadow .2s; }
+  .tile:hover { transform: translateY(-4px); color: inherit; border-color: var(--c, var(--coc-gold)); box-shadow: 0 0 26px color-mix(in srgb, var(--c, var(--coc-gold)) 35%, transparent); }
+  .tile .n { font-size: 2.2rem; font-weight: 900; line-height: 1; color: var(--c, var(--coc-gold)); }
+  .meter-row { display: grid; grid-template-columns: 82px 1fr 24px; align-items: center; gap: .6rem; font-size: .85rem; margin-top: .55rem; }
+
+  /* troop cards */
+  .troop-card { --c: var(--coc-green); --t: #fff; background: rgba(255,240,220,.05); border: 1px solid color-mix(in srgb, var(--c) 45%, transparent);
+    box-shadow: 0 0 22px color-mix(in srgb, var(--c) 12%, transparent); border-radius: 1.2rem; overflow: hidden; transition: transform .2s, box-shadow .2s; }
+  .troop-card:hover { transform: translateY(-6px); box-shadow: 0 0 36px color-mix(in srgb, var(--c) 45%, transparent); }
+  .pic { position: relative; aspect-ratio: 4 / 5; background: #0d0a08; border-bottom: 1px solid color-mix(in srgb, var(--c) 45%, transparent); overflow: hidden; }
+  .pic img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s; }
+  .troop-card:hover .pic img { transform: scale(1.06); }
+  .ph { width: 100%; height: 100%; display: grid; place-items: center; font-size: 6rem; font-weight: 900; color: var(--c);
+    background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--c) 35%, transparent), #0d0a08 75%); text-shadow: 0 0 30px var(--c); }
+  .num { position: absolute; left: 10px; bottom: 10px; font-weight: 900; font-size: .8rem; padding: .15rem .55rem; border-radius: .35rem; background: rgba(21,17,15,.8); color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 60%, transparent); }
+  .heart { position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; padding: 0; border-radius: .5rem; background: rgba(21,17,15,.75);
+    border: 1px solid rgba(246,239,228,.6); color: #f6efe4; font-size: 1.15rem; line-height: 1; }
+  .heart:hover { background: #000; color: #fff; }
+  .heart.on { color: var(--coc-pink); border-color: var(--coc-pink); box-shadow: 0 0 16px rgba(255,61,156,.5); }
+  .tag { background: var(--c); color: var(--t); font-weight: 800; border-radius: .35rem; font-size: .72rem; padding: .3em .7em; }
+  .tag.soft { background: rgba(156,160,163,.2); color: #f6efe4; font-weight: 600; }
+  .progress { background: rgba(156,160,163,.22); height: 6px; }
+  .progress-bar { background: var(--c, var(--coc-green)); }
+  .clamp3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .empty { border: 1px dashed var(--bs-border-color); border-radius: 1.2rem; }
+  .code { font-family: ui-monospace, Consolas, monospace; font-size: .8rem; }
+
+  [data-bs-theme=dark] .form-control, [data-bs-theme=dark] .form-select { background-color: rgba(255,240,220,.06); border-color: var(--bs-border-color); }
+  [data-bs-theme=dark] .form-control:focus, [data-bs-theme=dark] .form-select:focus { border-color: var(--coc-green); box-shadow: 0 0 0 .2rem rgba(91,163,49,.35); }
+  .page { padding-bottom: 3rem; }
+
+  /* cover banner: put your own picture at images/cover.jpg (or .png / .webp) and it replaces the built-in village scene */
+  .cover { position: relative; border-bottom: 3px solid var(--coc-gold);
+    background:
+      linear-gradient(90deg, rgba(21,17,15,.9) 0%, rgba(21,17,15,.55) 50%, rgba(21,17,15,.15) 100%),
+      linear-gradient(0deg, #15110F 0%, rgba(21,17,15,0) 30%),
+      url('images/cover.jpg') center / cover no-repeat,
+      url('images/cover.png') center / cover no-repeat,
+      url('images/cover.webp') center / cover no-repeat,
+      url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1600 600%22 preserveAspectRatio=%22xMidYMax slice%22%3E%3Cdefs%3E%3ClinearGradient id=%22sky%22 x1=%220%22 y1=%220%22 x2=%220%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%230c2326%22/%3E%3Cstop offset=%22.55%22 stop-color=%22%231f4a3a%22/%3E%3Cstop offset=%221%22 stop-color=%22%23c98a2b%22/%3E%3C/linearGradient%3E%3CradialGradient id=%22sun%22 cx=%22.5%22 cy=%22.5%22 r=%22.5%22%3E%3Cstop offset=%220%22 stop-color=%22%23ffe9a8%22 stop-opacity=%22.95%22/%3E%3Cstop offset=%22.35%22 stop-color=%22%23E8B73D%22 stop-opacity=%22.55%22/%3E%3Cstop offset=%221%22 stop-color=%22%23E8B73D%22 stop-opacity=%220%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width=%221600%22 height=%22600%22 fill=%22url(%23sky)%22/%3E%3Ccircle cx=%221180%22 cy=%22360%22 r=%22330%22 fill=%22url(%23sun)%22/%3E%3Cg fill=%22%23fff%22 opacity=%22.5%22%3E%3Ccircle cx=%22160%22 cy=%2270%22 r=%221.6%22/%3E%3Ccircle cx=%22420%22 cy=%22130%22 r=%221.3%22/%3E%3Ccircle cx=%22640%22 cy=%2250%22 r=%221.8%22/%3E%3Ccircle cx=%22900%22 cy=%22110%22 r=%221.4%22/%3E%3Ccircle cx=%221330%22 cy=%2260%22 r=%221.7%22/%3E%3Ccircle cx=%221500%22 cy=%22150%22 r=%221.3%22/%3E%3Ccircle cx=%22300%22 cy=%22200%22 r=%221.2%22/%3E%3C/g%3E%3Cpath d=%22M0 430 C200 360 380 420 560 380 C760 335 900 410 1100 370 C1300 330 1460 390 1600 350 V600 H0Z%22 fill=%22%232c5a3a%22 opacity=%22.9%22/%3E%3Cg fill=%22%231a2a1f%22%3E%3Crect x=%221080%22 y=%22250%22 width=%22150%22 height=%22150%22/%3E%3Crect x=%221080.0%22 y=%22236%22 width=%2216.7%22 height=%2214%22/%3E%3Crect x=%221113.3%22 y=%22236%22 width=%2216.7%22 height=%2214%22/%3E%3Crect x=%221146.7%22 y=%22236%22 width=%2216.7%22 height=%2214%22/%3E%3Crect x=%221180.0%22 y=%22236%22 width=%2216.7%22 height=%2214%22/%3E%3Crect x=%221213.3%22 y=%22236%22 width=%2216.7%22 height=%2214%22/%3E%3Crect x=%221040%22 y=%22205%22 width=%2262%22 height=%22200%22/%3E%3Crect x=%221040.0%22 y=%22191%22 width=%2212.4%22 height=%2214%22/%3E%3Crect x=%221064.8%22 y=%22191%22 width=%2212.4%22 height=%2214%22/%3E%3Crect x=%221089.6%22 y=%22191%22 width=%2212.4%22 height=%2214%22/%3E%3Crect x=%221212%22 y=%22215%22 width=%2262%22 height=%22190%22/%3E%3Crect x=%221212.0%22 y=%22201%22 width=%2212.4%22 height=%2214%22/%3E%3Crect x=%221236.8%22 y=%22201%22 width=%2212.4%22 height=%2214%22/%3E%3Crect x=%221261.6%22 y=%22201%22 width=%2212.4%22 height=%2214%22/%3E%3Crect x=%221126%22 y=%22180%22 width=%2258%22 height=%2280%22/%3E%3Crect x=%221126.0%22 y=%22166%22 width=%2211.6%22 height=%2214%22/%3E%3Crect x=%221149.2%22 y=%22166%22 width=%2211.6%22 height=%2214%22/%3E%3Crect x=%221172.4%22 y=%22166%22 width=%2211.6%22 height=%2214%22/%3E%3Crect x=%221000%22 y=%22330%22 width=%22320%22 height=%2280%22/%3E%3C/g%3E%3Cg fill=%22%23E8232E%22%3E%3Cpath d=%22M1155 166 V122 L1198 138 L1155 152Z%22/%3E%3Cpath d=%22M1071 191 V150 L1108 163 L1071 177Z%22/%3E%3Cpath d=%22M1243 201 V160 L1280 173 L1243 187Z%22/%3E%3C/g%3E%3Cg fill=%22%231a2a1f%22%3E%3Crect x=%221155%22 y=%22122%22 width=%223%22 height=%2260%22/%3E%3Crect x=%221071%22 y=%22150%22 width=%223%22 height=%2250%22/%3E%3Crect x=%221243%22 y=%22160%22 width=%223%22 height=%2250%22/%3E%3C/g%3E%3Cg fill=%22%23e8b73d%22 opacity=%22.9%22%3E%3Crect x=%221140%22 y=%22290%22 width=%2214%22 height=%2222%22 rx=%227%22/%3E%3Crect x=%221160%22 y=%22290%22 width=%2214%22 height=%2222%22 rx=%227%22/%3E%3Crect x=%221053%22 y=%22260%22 width=%2210%22 height=%2218%22 rx=%225%22/%3E%3Crect x=%221225%22 y=%22270%22 width=%2210%22 height=%2218%22 rx=%225%22/%3E%3C/g%3E%3Cpath d=%22M0 480 C240 430 420 490 640 455 C860 420 1040 480 1260 450 C1420 428 1520 455 1600 440 V600 H0Z%22 fill=%22%233f7a2c%22/%3E%3Cg%3E%3Crect x=%221425%22 y=%22408%22 width=%228%22 height=%2240%22 fill=%22%234a3320%22/%3E%3Ccircle cx=%221429%22 cy=%22396%22 r=%2234%22 fill=%22%232f6a26%22/%3E%3Ccircle cx=%221448%22 cy=%22412%22 r=%2224%22 fill=%22%23357a2b%22/%3E%3Crect x=%221500%22 y=%22420%22 width=%227%22 height=%2234%22 fill=%22%234a3320%22/%3E%3Ccircle cx=%221503%22 cy=%22410%22 r=%2228%22 fill=%22%232f6a26%22/%3E%3Crect x=%22210%22 y=%22430%22 width=%228%22 height=%2240%22 fill=%22%234a3320%22/%3E%3Ccircle cx=%22214%22 cy=%22418%22 r=%2232%22 fill=%22%232f6a26%22/%3E%3Ccircle cx=%22196%22 cy=%22436%22 r=%2222%22 fill=%22%23357a2b%22/%3E%3C/g%3E%3Cpath d=%22M0 540 C300 500 520 548 800 522 C1080 496 1330 540 1600 515 V600 H0Z%22 fill=%22%235BA331%22/%3E%3Cpath d=%22M0 575 C400 548 800 585 1200 562 C1400 552 1520 566 1600 560 V600 H0Z%22 fill=%22%232d5a22%22/%3E%3C/svg%3E") center bottom / cover no-repeat,
+      #15110F; }
+  .cover-lg { padding: 5rem 0 4.5rem; min-height: 460px; display: flex; align-items: center; }
+  .cover-sm { padding: 3.5rem 0 3rem; margin-bottom: 2.5rem; }
+  .info-card { border-radius: 1.2rem; padding: 1.2rem; height: 100%; border-top: 4px solid var(--c, var(--coc-gold)); }
+  .info-card .k { font-weight: 800; color: var(--c, var(--coc-gold)); text-transform: uppercase; letter-spacing: .06em; font-size: .8rem; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-md sticky-top">
+  <div class="container">
+    <a class="navbar-brand brand-mark" href="#/home">CLASH OF CLANS
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-md-center gap-md-2">
+        <li class="nav-item"><a class="nav-link" data-page="home" href="#/home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" data-page="troops" href="#/troops">Troops</a></li>
+        <li class="nav-item"><a class="nav-link" data-page="favorites" href="#/favorites">Favorites <span class="badge badge-fav" id="favCount">0</span></a></li>
+        <li class="nav-item"><a class="nav-link" data-page="about" href="#/about">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container"><div id="error"></div></div>
+
+<!-- ============ PAGE: HOME ============ -->
+<main class="page" id="page-home">
+  <header class="cover cover-lg">
+    <div class="container py-md-3">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-8">
+          <div class="small fw-bold text-uppercase mb-2" style="color:var(--coc-green);letter-spacing:.08em"><span class="live-dot me-2"></span>Home Village · <span id="heroCount">15</span> troops</div>
+          <h1 class="display-2 fw-bolder lh-1 mb-3">Meet the <span class="title-grad">Troops</span></h1>
+          <p class="lead text-secondary mb-4" style="max-width:34rem">Browse every Home Village troop, see who they target and how they attack, and save your favorites.</p>
+          <div class="d-flex flex-wrap gap-3">
+            <a class="btn btn-coc btn-lg px-4" href="#/troops">Explore Troops</a>
+            <button class="btn btn-ghost btn-lg px-4" data-random>Random Troop</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Army overview sits below the cover -->
+    <section class="pt-5">
+      <h2 class="sec h3 mb-4">Army Overview</h2>
+      <div class="glass rounded-4 p-4">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-5">
+            <div class="row row-cols-3 g-2 text-center">
+              <div class="col"><div class="glass rounded-3 py-2 stat"><b id="sTotal">–</b><small>Troops</small></div></div>
+              <div class="col"><div class="glass rounded-3 py-2 stat"><b id="sAir">–</b><small>Hit air</small></div></div>
+              <div class="col"><div class="glass rounded-3 py-2 stat"><b id="sTypes">–</b><small>Attack types</small></div></div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="small text-secondary text-uppercase" style="letter-spacing:.1em">Favorite targets</div>
+            <div id="meters"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pt-5">
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <h2 class="sec h3 mb-0">Featured Troops</h2>
+        <a href="#/troops" class="small fw-bold text-decoration-none">View all &rarr;</a>
+      </div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4" id="featuredGrid"></div>
+    </section>
+
+    <section class="pt-5">
+      <h2 class="sec h3 mb-4">Browse by Favorite Target</h2>
+      <div class="row row-cols-2 row-cols-lg-4 g-3" id="targetTiles"></div>
+    </section>
+
+    <section class="pt-5">
+      <h2 class="sec h3 mb-4">Browse by Attack Type</h2>
+      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3" id="typeTiles"></div>
+    </section>
+  </div>
+</main>
+
+<!-- ============ PAGE: TROOPS ============ -->
+<main class="page container pt-4 d-none" id="page-troops">
+  <h2 class="sec display-6 mb-4">Troops</h2>
+  <div class="row g-2 mb-2">
+    <div class="col-lg"><input id="search" type="search" class="form-control form-control-lg" placeholder="Search by name, e.g. Wizard" aria-label="Search troops"></div>
+    <div class="col-6 col-lg-auto"><select id="target" class="form-select form-select-lg" aria-label="Filter by favorite target"><option value="">All targets</option></select></div>
+    <div class="col-6 col-lg-auto"><select id="type" class="form-select form-select-lg" aria-label="Filter by attack type"><option value="">All attack types</option></select></div>
+    <div class="col-12 col-lg-auto"><button class="btn btn-ghost btn-lg w-100" data-random>RANDOM</button></div>
+  </div>
+  <div class="small text-secondary mb-4" id="count" aria-live="polite">&nbsp;</div>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4" id="allGrid"></div>
+</main>
+
+<!-- ============ PAGE: FAVORITES ============ -->
+<main class="page container pt-4 d-none" id="page-favorites">
+  <h2 class="sec display-6 mb-4">Favorites</h2>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4" id="favGrid"></div>
+</main>
+
+<!-- ============ PAGE: ABOUT ============ -->
+<main class="page" id="page-about">
+  <header class="cover cover-sm">
+    <div class="container">
+      <div class="small fw-bold text-uppercase mb-2" style="color:var(--coc-gold);letter-spacing:.1em">By Supercell</div>
+      <h2 class="display-4 fw-bolder mb-2">About <span class="title-grad">Clash of Clans</span></h2>
+      <p class="lead text-secondary mb-0" style="max-width:40rem">Build a village, train an army, and join a clan to battle players from all over the world.</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <section class="mb-5">
+      <h2 class="sec h3 mb-4">What is Clash of Clans?</h2>
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <p class="text-secondary fs-5">Clash of Clans is a free-to-play mobile strategy game made by Supercell, a game studio from Finland. It was released in 2012 and quickly became one of the most popular mobile games in the world.</p>
+          <p class="text-secondary mb-0">You are the chief of your own village. You collect resources, construct buildings and defenses, train troops, and attack other players' villages to steal their loot, all while protecting your own from raids.</p>
+        </div>
+        <div class="col-lg-5">
+          <div class="glass rounded-4 p-4 h-100">
+            <div class="row row-cols-3 g-2 text-center">
+              <div class="col"><div class="stat"><b>2012</b><small>Released</small></div></div>
+              <div class="col"><div class="stat"><b>Free</b><small>To play</small></div></div>
+              <div class="col"><div class="stat"><b>Mobile</b><small>iOS &amp; Android</small></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-5">
+      <h2 class="sec h3 mb-4">How the game works</h2>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
+        <div class="col"><div class="glass info-card" style="--c:var(--coc-green)"><div class="k">1 · Build</div><div class="fw-bold fs-5 mb-1">Your village</div><div class="small text-secondary">Place collectors, storages, defenses and walls. Upgrading your Town Hall unlocks stronger buildings and troops.</div></div></div>
+        <div class="col"><div class="glass info-card" style="--c:var(--coc-gold)"><div class="k">2 · Train</div><div class="fw-bold fs-5 mb-1">Your army</div><div class="small text-secondary">Spend Elixir to train troops such as Barbarians, Archers and Dragons, and mix them into a strategy that fits your target.</div></div></div>
+        <div class="col"><div class="glass info-card" style="--c:var(--coc-red)"><div class="k">3 · Battle</div><div class="fw-bold fs-5 mb-1">Raid and defend</div><div class="small text-secondary">Attack other villages for loot and trophies, while your defenses protect your own resources when you are away.</div></div></div>
+        <div class="col"><div class="glass info-card" style="--c:var(--coc-violet)"><div class="k">4 · Team up</div><div class="fw-bold fs-5 mb-1">Join a clan</div><div class="small text-secondary">Chat and donate troops with clanmates, and fight together in Clan Wars against other clans.</div></div></div>
+      </div>
+    </section>
+
+    <section class="mb-5">
+      <h2 class="sec h3 mb-4">Resources</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-3">
+        <div class="col"><div class="glass info-card" style="--c:var(--coc-gold)"><div class="k">Gold</div><div class="small text-secondary mt-1">Used to build and upgrade most buildings, defenses and walls.</div></div></div>
+        <div class="col"><div class="glass info-card" style="--c:var(--coc-pink)"><div class="k">Elixir</div><div class="small text-secondary mt-1">Used to train troops and upgrade them. Every troop on this site is trained with Elixir.</div></div></div>
+        <div class="col"><div class="glass info-card" style="--c:var(--coc-violet)"><div class="k">Dark Elixir</div><div class="small text-secondary mt-1">A rarer resource for training powerful dark troops and upgrading Heroes.</div></div></div>
+      </div>
+    </section>
+
+    <section class="mb-5">
+      <h2 class="sec h3 mb-4">Understanding a troop</h2>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
+        <div class="col"><div class="glass info-card" style="--c:var(--coc-green)"><div class="k">Favorite target</div><div class="small text-secondary mt-1">What a troop goes after first: Any, Resources, Defenses or Walls. On this site it decides the card color.</div></div></div>
+        <div class="col"><div class="glass info-card" style="--c:var(--coc-orange)"><div class="k">Attack type</div><div class="small text-secondary mt-1">How it fights: Melee, Ranged, Area Splash, Healing or Chain Lightning.</div></div></div>
+        <div class="col"><div class="glass info-card" style="--c:var(--coc-cyan)"><div class="k">Ground and Air</div><div class="small text-secondary mt-1">Whether the troop can hit ground units only, or both ground and air.</div></div></div>
+        <div class="col"><div class="glass info-card" style="--c:var(--coc-pink)"><div class="k">Training cost</div><div class="small text-secondary mt-1">The resource spent to train the troop, such as Elixir.</div></div></div>
+      </div>
+      <div class="mt-4"><a class="btn btn-coc px-4" href="#/troops">Browse the troops</a></div>
+    </section>
+
+    <p class="small text-secondary border-top pt-3" style="border-color:var(--bs-border-color)!important">This is a fan-made project. It is not affiliated with, endorsed by, or sponsored by Supercell. Clash of Clans and all related names are trademarks of Supercell.</p>
+  </div>
+</main>
+
+<footer class="text-center text-secondary small py-4 border-top" style="border-color:var(--bs-border-color)!important">Bootstrap · HTML · API</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const TARGET = {
+  Any:       { c: '#5BA331', t: '#fff' },     // Village Green
+  Resources: { c: '#E8B73D', t: '#15110F' },  // Builder Gold
+  Defenses:  { c: '#E8232E', t: '#fff' },     // Barbarian Red
+  Walls:     { c: '#FF7A2E', t: '#15110F' },  // Dragon Orange
+};
+const PAGES = ['home', 'troops', 'favorites', 'about'];
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+const tv = (c) => { const r = TARGET[c.target] ?? TARGET.Any; return `--c:${r.c};--t:${r.t}`; };
+const pad = (n) => String(n).padStart(2, '0');
+const pic = (c) => c.image
+  ? `<img src="${esc(c.image)}" alt="${esc(c.name)}" loading="lazy" data-initial="${esc(c.name[0])}"${c.guess ? ` data-guess="${esc(c.guess)}"` : ''}>`
+  : `<div class="ph">${esc(c.name[0])}</div>`;
+
+let CH = [];
+let favs = new Set();
+try { favs = new Set(JSON.parse(localStorage.getItem('coc-favs') || '[]')); } catch {}
+const saveFavs = () => { try { localStorage.setItem('coc-favs', JSON.stringify([...favs])); } catch {} };
+
+/* ---------- loading the troops ----------
+   1) from the API (/characters) when the page is opened through `npm start`
+   2) otherwise straight from characters.json, so the page also works on Live Server or any static server */
+const IMG_EXTS = ['png', 'jpg', 'jpeg', 'webp', 'gif', 'svg'];
+const slug = (n) => n.toLowerCase().replace(/\./g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+async function getJson(url) {
+  const r = await fetch(url);
+  const text = await r.text();
+  try { return { ok: r.ok, data: JSON.parse(text) }; } catch { return { ok: false, data: null }; }
+}
+async function loadTroops() {
+  try {
+    const r = await getJson('/characters');
+    if (r.ok && Array.isArray(r.data?.characters)) return r.data.characters;
+  } catch { /* fall through to characters.json */ }
+  try {
+    const r = await getJson('characters.json');
+    if (r.ok && Array.isArray(r.data)) {
+      return r.data.map((c, i) => {
+        const id = slug(c.name);
+        return { number: i + 1, id, ...c, attack: `${c.attackType} (${c.layer})`, image: `images/${id}.${IMG_EXTS[0]}`, guess: id };
+      });
+    }
+  } catch { /* handled below */ }
+  throw new Error('load failed');
+}
+const LOAD_ERROR = 'Could not load the troops. Start the site with <code>npm start</code> and open <code>http://localhost:3000</code>, and make sure <code>characters.json</code> is in the same folder as this page.';
+
+// if a picture fails to load: try the next file type, then show the first letter of the name instead
+document.addEventListener('error', (e) => {
+  const im = e.target;
+  if (im.tagName !== 'IMG' || !im.dataset.initial) return;
+  if (im.dataset.guess) {
+    const i = Number(im.dataset.i || 0) + 1;
+    if (i < IMG_EXTS.length) { im.dataset.i = i; im.src = `images/${im.dataset.guess}.${IMG_EXTS[i]}`; return; }
+  }
+  const ph = document.createElement('div');
+  ph.className = 'ph'; ph.textContent = im.dataset.initial;
+  im.replaceWith(ph);
+}, true);
+
+function card(c) {
+  const on = favs.has(c.id);
+  return `<div class="col"><article class="card troop-card h-100" style="${tv(c)}">
+    <div class="pic">${pic(c)}
+      <span class="num">#${pad(c.number)}</span>
+      <button class="btn heart ${on ? 'on' : ''}" data-fav="${esc(c.id)}" aria-label="${on ? 'Remove from favorites' : 'Add to favorites'}">${on ? '♥' : '♡'}</button>
+    </div>
+    <div class="card-body d-flex flex-column gap-2">
+      <h3 class="h4 fw-bold mb-0 text-break">${esc(c.name)}</h3>
+      <div class="d-flex flex-wrap gap-1">
+        <span class="tag">Targets: ${esc(c.target)}</span>
+        <span class="tag soft">${esc(c.attackType)}</span>
+        <span class="tag soft">${esc(c.layer)}</span>
+      </div>
+      <p class="small text-secondary clamp3 flex-grow-1 mb-1">${esc(c.description)}</p>
+      <a class="btn btn-coc w-100" href="view.html?id=${encodeURIComponent(c.id)}">View Details</a>
+    </div></article></div>`;
+}
+const emptyBox = (msg) => `<div class="col-12"><div class="empty p-4 text-center text-secondary">${msg}</div></div>`;
+
+function renderAll() {
+  const q = $('search').value.trim().toLowerCase();
+  const tg = $('target').value, ty = $('type').value;
+  const list = CH.filter((c) =>
+    (!tg || c.target === tg) && (!ty || c.attackType === ty) &&
+    (!q || c.name.toLowerCase().includes(q) || c.description.toLowerCase().includes(q)));
+  $('allGrid').innerHTML = list.length ? list.map(card).join('') : emptyBox('No troops match your search.');
+  $('count').textContent = `Showing ${list.length} of ${CH.length} troops`;
+}
+function renderFavs() {
+  const list = CH.filter((c) => favs.has(c.id));
+  $('favGrid').innerHTML = list.length ? list.map(card).join('') : emptyBox('No favorites yet. Press ♡ on any troop to save it.');
+  $('favCount').textContent = list.length;
+}
+function renderEverything() {
+  $('featuredGrid').innerHTML = CH.filter((c) => c.featured).slice(0, 4).map(card).join('');
+  renderAll(); renderFavs();
+}
+const countBy = (key) => CH.reduce((m, c) => ((m[c[key]] = (m[c[key]] || 0) + 1), m), {});
+
+function renderHome() {
+  const byTarget = countBy('target'), byType = countBy('attackType');
+  $('heroCount').textContent = CH.length;
+  $('sTotal').textContent = CH.length;
+  $('sAir').textContent = CH.filter((c) => c.layer.includes('Air')).length;
+  $('sTypes').textContent = Object.keys(byType).length;
+  $('meters').innerHTML = Object.entries(byTarget).map(([t, n]) => `
+    <div class="meter-row" style="--c:${(TARGET[t] ?? TARGET.Any).c}"><span>${esc(t)}</span>
+      <div class="progress"><div class="progress-bar" style="width:${Math.round((n / CH.length) * 100)}%"></div></div><b>${n}</b></div>`).join('');
+  $('targetTiles').innerHTML = Object.entries(byTarget).map(([t, n]) => `
+    <div class="col"><a href="#/troops" class="tile glass" style="--c:${(TARGET[t] ?? TARGET.Any).c}" data-ftarget="${esc(t)}">
+      <div class="n">${n}</div><div class="fw-bold">${esc(t)}</div><div class="small text-secondary">favorite target</div></a></div>`).join('');
+  $('typeTiles').innerHTML = Object.entries(byType).map(([t, n]) => `
+    <div class="col"><a href="#/troops" class="tile glass" data-ftype="${esc(t)}">
+      <div class="n">${n}</div><div class="fw-bold">${esc(t)}</div><div class="small text-secondary">${n === 1 ? 'troop' : 'troops'}</div></a></div>`).join('');
+
+  const opts = (vals) => [...new Set(vals)].map((v) => `<option>${esc(v)}</option>`).join('');
+  $('target').insertAdjacentHTML('beforeend', opts(CH.map((c) => c.target)));
+  $('type').insertAdjacentHTML('beforeend', opts(CH.map((c) => c.attackType)));
+
+}
+
+/* ---------- router (Home / Troops / Favorites / About) ---------- */
+function route() {
+  let page = (location.hash || '#/home').replace('#/', '');
+  if (!PAGES.includes(page)) page = 'home';
+  PAGES.forEach((p) => $('page-' + p).classList.toggle('d-none', p !== page));
+  document.querySelectorAll('[data-page]').forEach((a) => a.classList.toggle('active', a.dataset.page === page));
+  window.scrollTo({ top: 0 });
+  const nav = $('nav');
+  if (nav.classList.contains('show')) bootstrap.Collapse.getOrCreateInstance(nav).hide();
+}
+window.addEventListener('hashchange', route);
+
+document.addEventListener('click', (e) => {
+  const fav = e.target.closest('[data-fav]');
+  if (fav) {
+    const id = fav.dataset.fav;
+    favs.has(id) ? favs.delete(id) : favs.add(id);
+    saveFavs(); renderEverything();
+    return;
+  }
+  const ft = e.target.closest('[data-ftarget]'), fy = e.target.closest('[data-ftype]');
+  if (ft || fy) {
+    $('search').value = '';
+    $('target').value = ft ? ft.dataset.ftarget : '';
+    $('type').value = fy ? fy.dataset.ftype : '';
+    renderAll();
+    return;
+  }
+  if (e.target.closest('[data-random]') && CH.length) {
+    location.href = 'view.html?id=' + encodeURIComponent(CH[Math.floor(Math.random() * CH.length)].id);
+  }
+});
+$('search').addEventListener('input', renderAll);
+$('target').addEventListener('change', renderAll);
+$('type').addEventListener('change', renderAll);
+
+async function load() {
+  try {
+    CH = await loadTroops();
+    renderHome();
+    renderEverything();
+  } catch {
+    $('error').innerHTML = `<div class="alert alert-danger mt-4">${LOAD_ERROR}</div>`;
+  }
+}
+route();
+load();
+</script>
+</body>
+</html>
