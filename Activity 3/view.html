@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Character Details - Clash Troops</title>
 
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+        rel="stylesheet"
+    >
 
     <link rel="stylesheet" href="style.css">
 
@@ -23,16 +20,16 @@
 <body>
 
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg clash-navbar">
 
     <div class="container">
 
         <a
-            class="navbar-brand fw-bold"
-            href="index.html">
-
-            ⚔️ CLASH TROOPS
-
+            class="navbar-brand clash-logo"
+            href="index.html"
+        >
+            ⚔ CLASH TROOPS
         </a>
 
 
@@ -40,7 +37,8 @@
             class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarNav">
+            data-bs-target="#navbarNav"
+        >
 
             <span class="navbar-toggler-icon"></span>
 
@@ -49,20 +47,36 @@
 
         <div
             class="collapse navbar-collapse"
-            id="navbarNav">
+            id="navbarNav"
+        >
 
             <ul class="navbar-nav ms-auto">
 
                 <li class="nav-item">
-
                     <a
                         class="nav-link"
-                        href="index.html">
-
+                        href="index.html#characters"
+                    >
                         Characters
-
                     </a>
+                </li>
 
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="index.html#api"
+                    >
+                        API
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="index.html#about"
+                    >
+                        About
+                    </a>
                 </li>
 
             </ul>
@@ -74,50 +88,55 @@
 </nav>
 
 
+<!-- MAIN -->
 <main class="py-5">
 
     <div class="container">
 
-
+        <!-- LOADING -->
         <div
-            id="loadingMessage"
-            class="text-center py-5">
+            id="loading"
+            class="text-center py-5"
+        >
 
             <div
                 class="spinner-border"
-                role="status">
-            </div>
+                role="status"
+            ></div>
 
             <p class="mt-3">
-                Loading character details...
+                Loading character...
             </p>
 
         </div>
 
 
+        <!-- ERROR -->
         <div
             id="errorMessage"
-            class="alert alert-danger text-center d-none">
-        </div>
+            class="alert alert-danger d-none"
+        ></div>
 
 
+        <!-- CHARACTER DETAILS -->
         <div
-            id="characterDetails"
-            class="d-none">
+            id="details"
+            class="d-none"
+        >
 
+            <!-- TOP SECTION -->
+            <div class="row align-items-center mb-5">
 
-            <div class="row g-4">
+                <div class="col-md-5 mb-4 mb-md-0">
 
-
-                <div class="col-md-5">
-
-                    <div class="card shadow-sm">
+                    <div class="detail-image-box">
 
                         <img
                             id="characterImage"
-                            class="card-img-top"
-                            alt="Character"
-                            style="max-height:450px; object-fit:contain; padding:20px;">
+                            src=""
+                            alt=""
+                            class="character-image"
+                        >
 
                     </div>
 
@@ -126,173 +145,87 @@
 
                 <div class="col-md-7">
 
-                    <h1
-                        id="characterName"
-                        class="fw-bold">
-                    </h1>
-
-
                     <span
                         id="characterCategory"
-                        class="badge bg-dark mb-3">
-                    </span>
+                        class="character-badge"
+                    ></span>
+
+
+                    <h1
+                        id="characterName"
+                        class="detail-title"
+                    ></h1>
 
 
                     <p
                         id="characterDescription"
-                        class="lead">
-                    </p>
-
-
-                    <div class="row mt-4">
-
-
-                        <div class="col-md-6 mb-3">
-
-                            <div class="card">
-
-                                <div class="card-body">
-
-                                    <h6 class="fw-bold">
-                                        Movement Speed
-                                    </h6>
-
-                                    <p
-                                        id="movementSpeed"
-                                        class="mb-0">
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="col-md-6 mb-3">
-
-                            <div class="card">
-
-                                <div class="card-body">
-
-                                    <h6 class="fw-bold">
-                                        Attack Speed
-                                    </h6>
-
-                                    <p
-                                        id="attackSpeed"
-                                        class="mb-0">
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="col-md-6 mb-3">
-
-                            <div class="card">
-
-                                <div class="card-body">
-
-                                    <h6 class="fw-bold">
-                                        Range
-                                    </h6>
-
-                                    <p
-                                        id="range"
-                                        class="mb-0">
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="col-md-6 mb-3">
-
-                            <div class="card">
-
-                                <div class="card-body">
-
-                                    <h6 class="fw-bold">
-                                        Target
-                                    </h6>
-
-                                    <p
-                                        id="targetType"
-                                        class="mb-0">
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                    </div>
+                        class="detail-description"
+                    ></p>
 
                 </div>
 
             </div>
 
 
-            <div class="mt-5">
+            <!-- BASIC INFORMATION -->
+            <section class="mb-5">
 
-                <h2 class="fw-bold mb-4">
-                    Character Levels
+                <h2 class="section-heading-line">
+                    BASIC INFORMATION
                 </h2>
 
 
-                <div class="table-responsive">
+                <div
+                    id="basicStats"
+                    class="row g-3"
+                ></div>
 
-                    <table
-                        class="table table-bordered table-striped">
-
-                        <thead class="table-dark">
-
-                            <tr>
-
-                                <th>Level</th>
-
-                                <th>Hitpoints</th>
-
-                                <th>DPS</th>
-
-                                <th>Damage / Shot</th>
-
-                                <th>Town Hall</th>
-
-                                <th>Research Cost</th>
-
-                            </tr>
-
-                        </thead>
+            </section>
 
 
-                        <tbody id="levelTable">
-                        </tbody>
+            <!-- LEVELS -->
+            <section class="mb-5">
 
-                    </table>
-
-                </div>
-
-            </div>
+                <h2 class="section-heading-line">
+                    LEVELS & UPGRADES
+                </h2>
 
 
-            <div class="mt-4">
+                <div
+                    id="levelsContainer"
+                    class="row g-3"
+                ></div>
+
+            </section>
+
+
+            <!-- EXTRA INFORMATION -->
+            <section
+                id="extraSection"
+                class="mb-5"
+            >
+
+                <h2 class="section-heading-line">
+                    ADDITIONAL INFORMATION
+                </h2>
+
+
+                <div
+                    id="extraInfo"
+                    class="row g-3"
+                ></div>
+
+            </section>
+
+
+            <!-- BACK BUTTON -->
+            <div class="text-center mt-5">
 
                 <a
                     href="index.html"
-                    class="btn btn-dark">
-
-                    ← Back to Characters
-
+                    class="navigation-button"
+                >
+                    ← BACK TO CHARACTERS
                 </a>
 
             </div>
@@ -304,13 +237,17 @@
 </main>
 
 
-<footer class="bg-dark text-white text-center py-3">
+<!-- FOOTER -->
+<footer class="py-4 text-center">
 
     <p class="mb-0">
-        © 2026 Clash Troops School Project
+        © 2026 Clash Troops Database
     </p>
 
 </footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 
 <script>
@@ -322,58 +259,427 @@ const IMAGE_BASE =
     "https://raw.githubusercontent.com/chiefpansancolt/clash-of-clans-data/main/";
 
 
-const params =
-    new URLSearchParams(window.location.search);
-
-
-const characterId =
-    params.get("id");
-
-
-const category =
-    params.get("category");
-
-
 const folderMap = {
 
-    troops: "troops",
-    spells: "spells",
-    heroes: "heroes",
-    siege: "siege-machines",
-    pets: "pets",
+    troop: "troops",
+    spell: "spells",
+    hero: "heroes",
+    siegeMachine: "siege-machines",
+    pet: "pets",
     equipment: "hero-equipment"
 
 };
 
 
+function formatCategory(category) {
+
+    const names = {
+
+        troop: "Troop",
+        spell: "Spell",
+        hero: "Hero",
+        siegeMachine: "Siege Machine",
+        pet: "Pet",
+        equipment: "Equipment"
+
+    };
+
+    return names[category] || category;
+
+}
+
+
+function formatTime(time) {
+
+    if (!time) {
+        return "N/A";
+    }
+
+    const parts = [];
+
+    if (time.days) {
+        parts.push(`${time.days}d`);
+    }
+
+    if (time.hours) {
+        parts.push(`${time.hours}h`);
+    }
+
+    if (time.minutes) {
+        parts.push(`${time.minutes}m`);
+    }
+
+    if (time.seconds) {
+        parts.push(`${time.seconds}s`);
+    }
+
+    return parts.length
+        ? parts.join(" ")
+        : "Instant";
+
+}
+
+
+function getImage(character) {
+
+    if (character?.images?.icon) {
+        return IMAGE_BASE + character.images.icon;
+    }
+
+    if (character?.levels?.[0]?.images?.normal) {
+        return IMAGE_BASE + character.levels[0].images.normal;
+    }
+
+    return "";
+
+}
+
+
+function addBasicStat(title, value, icon = "") {
+
+    if (
+        value === undefined ||
+        value === null ||
+        value === ""
+    ) {
+        return;
+    }
+
+
+    const container =
+        document.getElementById("basicStats");
+
+
+    const col =
+        document.createElement("div");
+
+    col.className =
+        "col-6 col-md-3";
+
+
+    col.innerHTML = `
+
+        <div class="stat-card h-100">
+
+            <div class="level-label">
+                ${icon} ${title}
+            </div>
+
+            <div class="level-stat">
+                ${value}
+            </div>
+
+        </div>
+
+    `;
+
+
+    container.appendChild(col);
+
+}
+
+
+function addExtraInfo(title, value) {
+
+    if (
+        value === undefined ||
+        value === null ||
+        value === ""
+    ) {
+        return;
+    }
+
+
+    const container =
+        document.getElementById("extraInfo");
+
+
+    const col =
+        document.createElement("div");
+
+    col.className =
+        "col-md-6";
+
+
+    col.innerHTML = `
+
+        <div class="info-card h-100">
+
+            <div class="level-label">
+                ${title}
+            </div>
+
+            <div class="level-stat">
+                ${value}
+            </div>
+
+        </div>
+
+    `;
+
+
+    container.appendChild(col);
+
+}
+
+
+function displayLevels(character) {
+
+    const container =
+        document.getElementById("levelsContainer");
+
+
+    if (
+        !character.levels ||
+        character.levels.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="col-12">
+
+                <div class="level-card">
+
+                    <p class="mb-0">
+                        Level information is not available
+                        for this character.
+                    </p>
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    character.levels.forEach(level => {
+
+        const normal =
+            level.stats?.normal || {};
+
+
+        const image =
+            level.images?.normal
+            ? IMAGE_BASE + level.images.normal
+            : "";
+
+
+        const col =
+            document.createElement("div");
+
+        col.className =
+            "col-md-6 col-lg-4";
+
+
+        col.innerHTML = `
+
+            <div class="level-card h-100">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <span class="level-badge">
+                        LEVEL ${level.level}
+                    </span>
+
+                    ${
+                        level.townHallRequired !== undefined
+                        ?
+                        `
+                        <span class="character-badge">
+                            TH ${level.townHallRequired}
+                        </span>
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+
+                ${
+                    image
+                    ?
+                    `
+                    <div class="text-center mb-3">
+
+                        <img
+                            src="${image}"
+                            alt="Level ${level.level}"
+                            style="max-width:120px; max-height:120px;"
+                            onerror="this.style.display='none';"
+                        >
+
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+
+                ${
+                    level.hitpoints !== undefined
+                    ?
+                    `
+                    <div class="mb-2">
+
+                        <div class="level-label">
+                            HITPOINTS
+                        </div>
+
+                        <div class="level-stat">
+                            ❤️ ${level.hitpoints}
+                        </div>
+
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+
+                ${
+                    normal.dps !== undefined
+                    ?
+                    `
+                    <div class="mb-2">
+
+                        <div class="level-label">
+                            DAMAGE PER SECOND
+                        </div>
+
+                        <div class="level-stat">
+                            ⚔ ${normal.dps}
+                        </div>
+
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+
+                ${
+                    normal.damagePerShot !== undefined
+                    ?
+                    `
+                    <div class="mb-2">
+
+                        <div class="level-label">
+                            DAMAGE PER SHOT
+                        </div>
+
+                        <div class="level-stat">
+                            💥 ${normal.damagePerShot}
+                        </div>
+
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+
+                ${
+                    level.researchCost !== undefined &&
+                    level.researchCost > 0
+                    ?
+                    `
+                    <div class="mb-2">
+
+                        <div class="level-label">
+                            UPGRADE COST
+                        </div>
+
+                        <div class="level-stat">
+                            💰 ${level.researchCost.toLocaleString()}
+                            ${level.researchCostResource || ""}
+                        </div>
+
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+
+                ${
+                    level.researchTime
+                    ?
+                    `
+                    <div>
+
+                        <div class="level-label">
+                            RESEARCH TIME
+                        </div>
+
+                        <div class="level-stat">
+                            ⏱ ${formatTime(level.researchTime)}
+                        </div>
+
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+            </div>
+
+        `;
+
+
+        container.appendChild(col);
+
+    });
+
+}
+
+
 async function loadCharacter() {
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+
+    const id =
+        params.get("id");
+
+    const category =
+        params.get("category");
+
+
+    if (!id || !category) {
+
+        showError(
+            "Character information is missing."
+        );
+
+        return;
+
+    }
+
+
+    const folder =
+        folderMap[category];
+
+
+    if (!folder) {
+
+        showError(
+            "Invalid character category."
+        );
+
+        return;
+
+    }
+
 
     try {
 
-        if (!characterId || !category) {
-
-            throw new Error(
-                "Character information is missing."
-            );
-
-        }
-
-
-        const folder =
-            folderMap[category];
-
-
-        if (!folder) {
-
-            throw new Error(
-                "Invalid character category."
-            );
-
-        }
-
-
         const url =
-            `${DATA_BASE}/${folder}/${characterId}.json`;
+            `${DATA_BASE}/${folder}/${id}.json`;
 
 
         const response =
@@ -383,7 +689,7 @@ async function loadCharacter() {
         if (!response.ok) {
 
             throw new Error(
-                "Character data could not be loaded."
+                "Character not found."
             );
 
         }
@@ -393,215 +699,206 @@ async function loadCharacter() {
             await response.json();
 
 
-        displayCharacter(character);
-
-    }
-
-    catch (error) {
-
-        document
-            .getElementById("loadingMessage")
-            .classList.add("d-none");
+        displayCharacter(
+            character,
+            category
+        );
 
 
-        const errorBox =
-            document.getElementById("errorMessage");
+    } catch (error) {
 
-
-        errorBox.classList.remove("d-none");
-
-
-        errorBox.textContent =
-            error.message;
+        showError(
+            "Unable to load character information."
+        );
 
     }
 
 }
 
 
-function displayCharacter(character) {
+function displayCharacter(character, category) {
 
     document
-        .getElementById("loadingMessage")
+        .getElementById("loading")
         .classList.add("d-none");
 
 
     document
-        .getElementById("characterDetails")
+        .getElementById("details")
         .classList.remove("d-none");
 
-
-    /*
-    IMAGE
-    */
-
-    let image = "";
-
-
-    if (
-        character.images &&
-        character.images.icon
-    ) {
-
-        image =
-            IMAGE_BASE +
-            character.images.icon;
-
-    }
-
-
-    document
-        .getElementById("characterImage")
-        .src = image;
-
-
-    document
-        .getElementById("characterImage")
-        .alt =
-        character.name;
-
-
-    /*
-    BASIC DETAILS
-    */
 
     document
         .getElementById("characterName")
         .textContent =
-        character.name;
+            character.name || "Unknown Character";
 
 
     document
         .getElementById("characterDescription")
         .textContent =
-        character.description ||
-        "No description available.";
+            character.description ||
+            "No description available.";
 
 
     document
         .getElementById("characterCategory")
         .textContent =
-        character.category ||
-        category;
+            formatCategory(category);
 
 
-    document
-        .getElementById("movementSpeed")
-        .textContent =
-        character.movementSpeed ??
-        "N/A";
+    const image =
+        getImage(character);
 
 
-    document
-        .getElementById("attackSpeed")
-        .textContent =
-        character.attackSpeed ??
-        "N/A";
+    const imageElement =
+        document.getElementById("characterImage");
 
 
-    document
-        .getElementById("range")
-        .textContent =
-        character.range ??
-        "N/A";
+    if (image) {
 
+        imageElement.src = image;
 
-    document
-        .getElementById("targetType")
-        .textContent =
-        character.targetType ||
-        "N/A";
+        imageElement.alt =
+            character.name || "Character";
 
+    } else {
 
-    /*
-    LEVELS
-    */
-
-    const table =
-        document.getElementById("levelTable");
-
-
-    table.innerHTML = "";
-
-
-    if (
-        character.levels &&
-        character.levels.length
-    ) {
-
-        character.levels.forEach(level => {
-
-            const normalStats =
-                level.stats?.normal || {};
-
-
-            const row =
-                document.createElement("tr");
-
-
-            row.innerHTML = `
-
-                <td>
-                    ${level.level ?? "N/A"}
-                </td>
-
-                <td>
-                    ${level.hitpoints ?? "N/A"}
-                </td>
-
-                <td>
-                    ${normalStats.dps ?? "N/A"}
-                </td>
-
-                <td>
-                    ${normalStats.damagePerShot ?? "N/A"}
-                </td>
-
-                <td>
-                    ${level.townHallRequired ?? "N/A"}
-                </td>
-
-                <td>
-                    ${
-                        level.researchCost != null
-                            ? level.researchCost.toLocaleString()
-                            : "N/A"
-                    }
-                    ${
-                        level.researchCostResource
-                            ? " " + level.researchCostResource
-                            : ""
-                    }
-                </td>
-
-            `;
-
-
-            table.appendChild(row);
-
-        });
+        imageElement.style.display =
+            "none";
 
     }
 
-    else {
 
-        table.innerHTML = `
+    // BASIC INFORMATION
 
-            <tr>
+    addBasicStat(
+        "Movement Speed",
+        character.movementSpeed,
+        "🏃"
+    );
 
-                <td
-                    colspan="6"
-                    class="text-center">
 
-                    No level information available.
+    addBasicStat(
+        "Attack Speed",
+        character.attackSpeed,
+        "⚔"
+    );
 
-                </td>
 
-            </tr>
+    addBasicStat(
+        "Range",
+        character.range,
+        "🎯"
+    );
 
-        `;
+
+    addBasicStat(
+        "Housing Space",
+        character.housingSpace,
+        "🏠"
+    );
+
+
+    addBasicStat(
+        "Target",
+        character.targetType,
+        "🎯"
+    );
+
+
+    addBasicStat(
+        "Damage Type",
+        character.damageType,
+        "💥"
+    );
+
+
+    addBasicStat(
+        "Barrack Level",
+        character.barrackLevelRequired,
+        "🏰"
+    );
+
+
+    addBasicStat(
+        "Donation Cost",
+        character.donationCost?.amount,
+        "💰"
+    );
+
+
+    // LEVELS
+
+    displayLevels(character);
+
+
+    // EXTRA INFORMATION
+
+    addExtraInfo(
+        "Category",
+        formatCategory(category)
+    );
+
+
+    if (character.troopType) {
+
+        addExtraInfo(
+            "Troop Type",
+            character.troopType
+        );
 
     }
+
+
+    if (character.specialAbility) {
+
+        addExtraInfo(
+            "Special Ability",
+            character.specialAbility
+        );
+
+    }
+
+
+    if (character.regularLevelRequired) {
+
+        addExtraInfo(
+            "Regular Level Required",
+            character.regularLevelRequired
+        );
+
+    }
+
+
+    if (character.boostCost) {
+
+        addExtraInfo(
+            "Boost Cost",
+            `${character.boostCost.toLocaleString()} ${character.boostCostResource || ""}`
+        );
+
+    }
+
+}
+
+
+function showError(message) {
+
+    document
+        .getElementById("loading")
+        .classList.add("d-none");
+
+
+    const error =
+        document.getElementById("errorMessage");
+
+
+    error.textContent =
+        message;
+
+
+    error.classList.remove("d-none");
 
 }
 
@@ -610,11 +907,5 @@ loadCharacter();
 
 </script>
 
-
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
-</script>
-
 </body>
-
 </html>
