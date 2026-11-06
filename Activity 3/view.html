@@ -20,7 +20,6 @@
 <body>
 
 
-<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg clash-navbar">
 
     <div class="container">
@@ -88,7 +87,6 @@
 </nav>
 
 
-<!-- MAIN -->
 <main class="py-5">
 
     <div class="container">
@@ -111,20 +109,17 @@
         </div>
 
 
-        <!-- ERROR -->
         <div
             id="errorMessage"
             class="alert alert-danger d-none"
         ></div>
 
 
-        <!-- CHARACTER DETAILS -->
         <div
             id="details"
             class="d-none"
         >
 
-            <!-- TOP SECTION -->
             <div class="row align-items-center mb-5">
 
                 <div class="col-md-5 mb-4 mb-md-0">
@@ -167,7 +162,6 @@
             </div>
 
 
-            <!-- BASIC INFORMATION -->
             <section class="mb-5">
 
                 <h2 class="section-heading-line">
@@ -183,7 +177,6 @@
             </section>
 
 
-            <!-- LEVELS -->
             <section class="mb-5">
 
                 <h2 class="section-heading-line">
@@ -199,7 +192,6 @@
             </section>
 
 
-            <!-- EXTRA INFORMATION -->
             <section
                 id="extraSection"
                 class="mb-5"
@@ -218,7 +210,6 @@
             </section>
 
 
-            <!-- BACK BUTTON -->
             <div class="text-center mt-5">
 
                 <a
@@ -237,7 +228,6 @@
 </main>
 
 
-<!-- FOOTER -->
 <footer class="py-4 text-center">
 
     <p class="mb-0">
@@ -770,7 +760,6 @@ function displayCharacter(character, category) {
     }
 
 
-    // BASIC INFORMATION
 
     addBasicStat(
         "Movement Speed",
@@ -828,12 +817,10 @@ function displayCharacter(character, category) {
     );
 
 
-    // LEVELS
 
     displayLevels(character);
 
 
-    // EXTRA INFORMATION
 
     addExtraInfo(
         "Category",
