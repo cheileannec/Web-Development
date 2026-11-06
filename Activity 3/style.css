@@ -1,34 +1,28 @@
-/* ==========================================
-   GENERAL
-========================================== */
-
-body {
-    background:
-        linear-gradient(
-            135deg,
-            #100e0c,
-            #17120f,
-            #151019
-        );
-
-    color: #f5f5f5;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+html {
+    scroll-behavior: smooth;
 }
 
+body {
+    margin: 0;
+    color: #f5f5f5;
+    font-family: Arial, Helvetica, sans-serif;
 
-/* ==========================================
-   NAVBAR
-========================================== */
+    background:
+        linear-gradient(
+            rgba(10, 12, 8, 0.72),
+            rgba(10, 12, 8, 0.88)
+        ),
+        url("background.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 
 .clash-navbar {
-    background: #11100e;
-
-    border-bottom:
-        3px solid #d8bb2e;
+    background: rgba(17, 16, 14, 0.95);
+    border-bottom: 3px solid #d8bb2e;
 }
 
 .clash-logo {
@@ -40,20 +34,14 @@ body {
         );
 
     color: #111 !important;
-
     font-weight: 900;
-
-    padding:
-        10px 16px;
-
+    padding: 10px 16px;
     border-radius: 8px;
 }
 
 .clash-navbar .nav-link {
     color: #ddd !important;
-
     font-weight: 700;
-
     margin-left: 10px;
 }
 
@@ -61,46 +49,155 @@ body {
     color: #d8bb2e !important;
 }
 
-
-/* ==========================================
-   HERO
-========================================== */
-
-.hero-section {
-    min-height: 470px;
-
+.cover-page {
+    min-height: 100vh;
+    position: relative;
     display: flex;
-
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            rgba(10, 12, 8, 0.55),
+            rgba(10, 12, 8, 0.75)
+        ),
+        url("cover.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cover-page::before {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
 
     background:
         radial-gradient(
-            circle at 80% 40%,
-            rgba(89, 150, 42, 0.18),
-            transparent 35%
+            circle,
+            rgba(224, 193, 43, 0.18),
+            transparent 65%
         );
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.cover-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    padding: 40px 20px;
+}
+
+.cover-eyebrow {
+    color: #d8bb2e;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+}
+
+.cover-title {
+    font-size: clamp(70px, 13vw, 150px);
+    line-height: 0.82;
+    font-weight: 1000;
+    letter-spacing: -6px;
+    margin: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4d43a 0%,
+            #d7b82d 35%,
+            #72b936 70%,
+            #4d9028 100%
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter:
+        drop-shadow(
+            0 8px 15px rgba(0, 0, 0, 0.7)
+        );
+}
+
+.cover-subtitle {
+    color: #fff;
+    font-weight: 900;
+    font-size: 15px;
+    letter-spacing: 5px;
+    margin-top: 30px;
+    margin-bottom: 18px;
+}
+
+.cover-description {
+    max-width: 650px;
+    margin: 0 auto 30px;
+    color: #b8b8b8;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.cover-button {
+    display: inline-block;
+    padding: 16px 30px;
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e9c52d,
+            #61a82d
+        );
+
+    color: #111;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 1000;
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.45);
+
+    transition: 0.25s ease;
+}
+
+.cover-button:hover {
+    color: #111;
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.hero-section {
+    min-height: 470px;
+    display: flex;
+    align-items: center;
+    background: transparent;
 }
 
 .eyebrow {
     color: #7e8b96;
-
     font-size: 12px;
-
     letter-spacing: 3px;
-
     font-weight: 800;
-
     margin-bottom: 12px;
 }
 
 .hero-title {
-    font-size:
-        clamp(55px, 9vw, 100px);
-
+    font-size: clamp(55px, 9vw, 100px);
     line-height: 0.9;
-
     font-weight: 1000;
-
     letter-spacing: -3px;
 
     background:
@@ -111,21 +208,15 @@ body {
         );
 
     -webkit-background-clip: text;
-
     -webkit-text-fill-color: transparent;
 }
 
 .hero-text {
     max-width: 700px;
-
     color: #999;
-
     font-size: 18px;
-
     line-height: 1.7;
-
-    margin:
-        25px 0;
+    margin: 25px 0;
 }
 
 .clash-button {
@@ -137,56 +228,36 @@ body {
         );
 
     border: none;
-
     color: #111;
-
     font-weight: 900;
-
-    padding:
-        13px 22px;
+    padding: 13px 22px;
 }
 
 .clash-button:hover {
     color: #111;
-
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 }
 
-
-/* ==========================================
-   SECTION
-========================================== */
+section {
+    position: relative;
+}
 
 .section-title {
     font-size: 40px;
-
     font-weight: 1000;
 }
 
-
-/* ==========================================
-   CATEGORY BUTTONS
-========================================== */
-
 .category-button {
-    background: #282421;
-
-    border:
-        1px solid #4c3c2b;
-
+    background: rgba(40, 36, 33, 0.88);
+    border: 1px solid #4c3c2b;
     color: #aaa;
-
     font-weight: 800;
-
     font-size: 12px;
 }
 
 .category-button:hover {
     color: white;
-
-    border-color:
-        #6cab35;
+    border-color: #6cab35;
 }
 
 .category-button.active {
@@ -198,102 +269,65 @@ body {
         );
 
     color: #111;
-
     border-color: transparent;
 }
 
-
-/* ==========================================
-   CHARACTER CARD
-========================================== */
-
 .character-card {
-    background:
-        #201d1a;
-
-    border:
-        1px solid #4c3c2b;
-
+    background: rgba(32, 29, 26, 0.93);
+    border: 1px solid #4c3c2b;
     border-radius: 16px;
-
     overflow: hidden;
-
-    transition:
-        0.25s ease;
+    transition: 0.25s ease;
 }
 
 .character-card:hover {
-    transform:
-        translateY(-6px);
-
-    border-color:
-        #6cad34;
+    transform: translateY(-6px);
+    border-color: #6cad34;
 }
 
 .character-image-box {
     height: 270px;
-
     background: #f4f4f4;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 }
 
 .character-image {
     height: 100%;
-
     width: 100%;
-
     object-fit: contain;
-
-    transition:
-        transform 0.25s ease;
+    transition: transform 0.25s ease;
 }
 
-.character-card:hover
-.character-image {
-    transform:
-        scale(1.04);
+.character-card:hover .character-image {
+    transform: scale(1.04);
 }
 
 .character-name {
     color: #fff;
-
     font-weight: 900;
-
     font-size: 24px;
 }
 
 .character-description {
     color: #888;
-
     font-size: 13px;
-
     line-height: 1.6;
-
     min-height: 62px;
 }
 
 .character-badge {
     background: #5da62e;
-
     color: white;
-
     font-weight: 800;
-
     font-size: 10px;
 }
 
 .stat-badge {
     background: #34302d;
-
     color: #ccc;
-
     font-size: 9px;
-
     margin-right: 4px;
 }
 
@@ -306,31 +340,18 @@ body {
         );
 
     border: none;
-
     color: #111;
-
     font-weight: 900;
 }
 
 .view-button:hover {
     color: #111;
-
-    transform:
-        translateY(-1px);
+    transform: translateY(-1px);
 }
 
-
-/* ==========================================
-   API
-========================================== */
-
 .api-box {
-    background:
-        rgba(36, 32, 28, 0.9);
-
-    border:
-        1px solid #4d3d2c;
-
+    background: rgba(36, 32, 28, 0.90);
+    border: 1px solid #4d3d2c;
     border-radius: 16px;
 }
 
@@ -339,38 +360,30 @@ body {
 }
 
 .api-badge {
-    background:
-        #5ca82e;
-
+    background: #5ca82e;
     color: white;
-
     padding: 10px 14px;
 }
 
-
-
-
 .about-box {
     max-width: 900px;
+
+    background:
+        rgba(32, 29, 26, 0.80);
+
+    border: 1px solid #4d3d2c;
+    border-radius: 16px;
+    padding: 30px;
 }
-
-
-
 
 .detail-image-box {
     min-height: 500px;
-
     background: #f5f5f5;
-
-    border:
-        2px solid #5f873b;
-
+    border: 2px solid #5f873b;
     border-radius: 20px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     overflow: hidden;
@@ -378,34 +391,23 @@ body {
 
 .detail-image-box img {
     max-height: 500px;
-
     width: 100%;
-
     object-fit: contain;
 }
 
 .detail-title {
-    font-size:
-        clamp(50px, 7vw, 85px);
-
+    font-size: clamp(50px, 7vw, 85px);
     line-height: 0.95;
-
     font-weight: 1000;
-
     letter-spacing: -2px;
 }
 
 .detail-description {
     color: #888;
-
     font-size: 18px;
-
     line-height: 1.7;
-
     max-width: 800px;
 }
-
-
 
 .save-button {
     background:
@@ -416,9 +418,7 @@ body {
         );
 
     color: #111;
-
     border: none;
-
     font-weight: 900;
 }
 
@@ -428,100 +428,64 @@ body {
 
 .save-button.saved {
     background: #ff3c9b;
-
     color: white;
 }
 
 .navigation-button {
     background: transparent;
-
-    border:
-        1px solid #57442f;
-
+    border: 1px solid #57442f;
     color: white;
-
     font-weight: 800;
 }
 
 .navigation-button:hover {
     border-color: #6cae35;
-
     color: white;
 }
 
 .navigation-button:disabled {
     opacity: 0.35;
-
     cursor: not-allowed;
 }
 
-
-
-
 .section-heading-line {
-    border-left:
-        6px solid #63b52b;
-
+    border-left: 6px solid #63b52b;
     padding-left: 14px;
 }
 
 .section-heading-line h2 {
     font-size: 32px;
-
     font-weight: 1000;
-
     letter-spacing: 2px;
 }
 
-
-
-
 .stat-card {
-    background: #211e1b;
-
-    border:
-        1px solid #55432e;
-
+    background: rgba(33, 30, 27, 0.93);
+    border: 1px solid #55432e;
     border-radius: 15px;
-
     color: white;
 }
 
 .stat-card h3 {
     color: #61ad2e;
-
     font-size: 21px;
-
     font-weight: 900;
-
     margin-bottom: 8px;
 }
 
 .stat-card p {
     color: #888;
-
     font-size: 9px;
-
     letter-spacing: 1px;
-
     font-weight: 900;
-
     margin: 0;
 }
 
-
-
-
 .level-card {
-    background: #211e1b;
-
-    border:
-        1px solid #55432e;
-
+    background: rgba(33, 30, 27, 0.93);
+    border: 1px solid #55432e;
     border-radius: 15px;
-
     overflow: hidden;
-
     color: white;
 }
 
@@ -533,8 +497,7 @@ body {
             transparent
         );
 
-    border-bottom:
-        1px solid #453729;
+    border-bottom: 1px solid #453729;
 }
 
 .level-badge {
@@ -546,21 +509,15 @@ body {
         );
 
     color: #111;
-
     font-weight: 900;
 }
 
 .level-label {
     display: block;
-
     color: #777;
-
     font-size: 9px;
-
     letter-spacing: 1px;
-
     font-weight: 900;
-
     margin-bottom: 5px;
 }
 
@@ -568,46 +525,57 @@ body {
     color: white;
 }
 
-
-
-
 .info-card {
-    background: #211e1b;
-
-    border:
-        1px solid #4d3d2c;
-
+    background: rgba(33, 30, 27, 0.93);
+    border: 1px solid #4d3d2c;
     border-radius: 14px;
-
     padding: 20px;
 
     display: flex;
-
     justify-content: space-between;
-
     gap: 20px;
 }
 
 .info-card span {
     color: #777;
-
     font-size: 10px;
-
     font-weight: 900;
-
     letter-spacing: 1px;
 }
 
 .info-card strong {
     color: #61ad2e;
-
     font-size: 14px;
 }
 
-
-
+footer {
+    background: rgba(10, 10, 10, 0.85);
+    border-top: 1px solid #4c3c2b;
+}
 
 @media (max-width: 768px) {
+    .cover-page {
+        min-height: 90vh;
+    }
+
+    .cover-title {
+        font-size: 70px;
+        letter-spacing: -3px;
+    }
+
+    .cover-eyebrow {
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+    .cover-subtitle {
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+    .cover-description {
+        font-size: 14px;
+    }
 
     .hero-section {
         min-height: 400px;
@@ -629,4 +597,7 @@ body {
         min-height: 380px;
     }
 
+    .about-box {
+        padding: 22px;
+    }
 }
